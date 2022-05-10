@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
 
     public bool DrBC_Mode;
 
-    private int LEFT_CLICK = 0;
+    //private int LEFT_CLICK = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -68,6 +68,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         //if left click
+        /*
         if (Input.GetMouseButtonDown(LEFT_CLICK))
         {
             Debug.Log("Cursor should be confined to game screen.");
@@ -75,6 +76,7 @@ public class GameManager : MonoBehaviour
             //confine cursor to game window
             Cursor.lockState = CursorLockMode.Confined;
         }
+        */
 
         //stop playing music if it should stop:
         if (musicShouldPlay == false)
