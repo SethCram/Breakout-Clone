@@ -91,7 +91,8 @@ public class GameManager : MonoBehaviour
             PlayRandomClip();
         }
 
-        if ( Input.GetKeyDown(KeyCode.Escape) && _state != State.MENU && _state != State.PAUSE ) //if pressed escape key, not in menu or paused
+        //escape or p to pause
+        if ( Input.GetButtonDown("Cancel") && _state != State.MENU && _state != State.PAUSE ) //if pressed escape key, not in menu or paused
         {
             unpauseState = _state;
 
