@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    [SerializeField] float _speed = 20f; //he uses '_' at start of vars that are private
+    [SerializeField] float _speed = 30f; //20f; //he uses '_' at start of vars that are private
     Rigidbody _rigidbodyComp;
     Vector3 _velocity;
     Renderer _renderer;

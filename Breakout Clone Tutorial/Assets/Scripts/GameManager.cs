@@ -46,6 +46,8 @@ public class GameManager : MonoBehaviour
 
     public bool DrBC_Mode;
 
+    //private int LEFT_CLICK = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -65,6 +67,17 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //if left click
+        /*
+        if (Input.GetMouseButtonDown(LEFT_CLICK))
+        {
+            Debug.Log("Cursor should be confined to game screen.");
+
+            //confine cursor to game window
+            Cursor.lockState = CursorLockMode.Confined;
+        }
+        */
+
         //stop playing music if it should stop:
         if (musicShouldPlay == false)
         {
@@ -78,7 +91,8 @@ public class GameManager : MonoBehaviour
             PlayRandomClip();
         }
 
-        if ( Input.GetKeyDown(KeyCode.Escape) && _state != State.MENU && _state != State.PAUSE ) //if pressed escape key, not in menu or paused
+        //escape or p to pause
+        if ( Input.GetButtonDown("Cancel") && _state != State.MENU && _state != State.PAUSE ) //if pressed escape key, not in menu or paused
         {
             unpauseState = _state;
 
@@ -252,7 +266,7 @@ public class GameManager : MonoBehaviour
     //to change state to passed in state:
     public void SwitchState(State newState, float delay = 0) //aka next state logic process?
     {
-        print("Switch state to " + newState);
+        //print("Switch state to " + newState);
 
         //waits zero seconds unless 'delay' arg overwritten:
         StartCoroutine(SwitchDelay(newState, delay));
@@ -277,7 +291,7 @@ public class GameManager : MonoBehaviour
     //does operations based on current state
     private void BeginState(State newState) //aka output logic process
     {
-        print("Current state: " + newState);
+        //print("Current state: " + newState);
 
         switch (newState)
         {
@@ -308,7 +322,8 @@ public class GameManager : MonoBehaviour
 
                 Cursor.visible = true;
 
-                if (Score > PlayerPrefs.GetInt("highscore")) //don't have to inititalize playerprefs vals bc starts at 0
+                //if new highscore achieved + not invinsible
+                if (Score > PlayerPrefs.GetInt("highscore") && DrBC_Mode == false) //don't have to inititalize playerprefs vals bc starts at 0
                 {
                     PlayerPrefs.SetInt("highscore", Score);
                 }
@@ -392,7 +407,7 @@ public class GameManager : MonoBehaviour
 
     private void EndState()
     {
-        print("State ending: " + _state);
+        //print("State ending: " + _state);
 
         switch (_state)
         {
