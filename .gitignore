@@ -10,6 +10,7 @@
 [Ll]ogs/
 [Uu]ser[Ss]ettings/
 [Mm]emoryCaptures/
+[Pp]ackages/
 
 # Recordings can get excessive in size
 [Rr]ecordings/
@@ -25,6 +26,7 @@
 
 # Visual Studio cache directory
 .vs/
+.vsconfig
 
 # Gradle cache directory
 .gradle/
