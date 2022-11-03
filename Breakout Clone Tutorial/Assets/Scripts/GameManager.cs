@@ -356,7 +356,7 @@ public class GameManager : MonoBehaviour
 
                 if(_currLevel != null) //so doesn't destroy 1st time around
                 {
-                    print($"{_currLevel} should be destroyed on INIT.");
+                    //print($"{_currLevel} should be destroyed on INIT.");
 
                     Destroy(_currLevel);
                 }

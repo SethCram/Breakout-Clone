@@ -19,20 +19,20 @@ public class HitBallAgent : Agent
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        //sensor.Reset();
-
         //inputs for the AI to solve problem
 
         //AI player position
         sensor.AddObservation(transform.position);
 
-        //ball position
+        
         if( ball != null)
         {
-           sensor.AddObservation(ball.position); 
-        }
+            //ball position
+           sensor.AddObservation(ball.position);
 
-        print(bricks.Length);
+            //difference between AI player and ball pos's
+            sensor.AddObservation(transform.position - ball.position);
+        }
 
         //bricks positions?
         foreach (Brick brick in bricks)
