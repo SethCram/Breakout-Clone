@@ -7664,7 +7664,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c58b9ba56ece2604489d4b4708a6b13b, type: 3}
   - {fileID: 8300000, guid: 584b503c5079fb945b2d7a8e2b2752b1, type: 3}
   DrBC_Mode: 0
-  training: 0
+  training: 1
   playerAIPrefab: {fileID: 7105323149887213364, guid: 2f1523afcf5c32f48a2cee3cb0c57804,
     type: 3}
 --- !u!82 &1030729602
@@ -9881,6 +9881,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7105323149887213373, guid: 2f1523afcf5c32f48a2cee3cb0c57804,
+        type: 3}
+      propertyPath: m_BehaviorType
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f1523afcf5c32f48a2cee3cb0c57804, type: 3}

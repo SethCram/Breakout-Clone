@@ -8,15 +8,19 @@ using Unity.MLAgents.Sensors;
 public class HitBallAgent : Agent
 {
     public Transform ball { private get; set; }
-    //[SerializeField] private Transform[] bricks;
+    public Brick[] bricks;
 
     public override void OnEpisodeBegin()
     {
-        GameManager.Instance.SwitchState(GameManager.State.INIT);
+        //need to give it time to allow level destruction
+        GameManager.Instance.SwitchState(GameManager.State.INIT, delay: 1f);
+
     }
 
     public override void CollectObservations(VectorSensor sensor)
     {
+        //sensor.Reset();
+
         //inputs for the AI to solve problem
 
         //AI player position
@@ -28,12 +32,30 @@ public class HitBallAgent : Agent
            sensor.AddObservation(ball.position); 
         }
 
+        print(bricks.Length);
+
         //bricks positions?
-        foreach (Brick brick in FindObjectsOfType<Brick>())
+        foreach (Brick brick in bricks)
         {
-            sensor.AddObservation(brick.GetComponent<Transform>().position);
+            if(brick != null)
+            {
+                sensor.AddObservation(brick.GetComponent<Transform>().position);
+            }
+            
         }
         
+    }
+
+    /// <summary>
+    /// Modify actions recieved by OnActionRecieved() for manual AI moving.
+    /// Used if MLagents-learn not running or Behavior type set to Hueristics.
+    /// </summary>
+    /// <param name="actionsOut"></param>
+    public override void Heuristic(in ActionBuffers actionsOut)
+    {
+        ActionSegment<float> continuousActions = actionsOut.ContinuousActions;
+
+        continuousActions[0] = Input.GetAxisRaw("Horizontal") * 10;
     }
 
     public override void OnActionReceived(ActionBuffers actions)

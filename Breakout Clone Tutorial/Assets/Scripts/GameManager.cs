@@ -64,13 +64,12 @@ public class GameManager : MonoBehaviour
         clipsLeftToPlay = new List<AudioClip>(); //init list
         ResetClipsToPlay();
 
-        /*Already done on episode begin
+        //Already done on episode begin?
         if(training)
         {
             //don't wait for menu
             SwitchState(State.INIT);
         }
-        */
 
         //Could use: PlayerPrefs.DeleteKey("highscore"); //resets highscore everytime start a session
     }
@@ -357,6 +356,8 @@ public class GameManager : MonoBehaviour
 
                 if(_currLevel != null) //so doesn't destroy 1st time around
                 {
+                    print($"{_currLevel} should be destroyed on INIT.");
+
                     Destroy(_currLevel);
                 }
                 if (_currPlayer == null)
@@ -364,7 +365,6 @@ public class GameManager : MonoBehaviour
                     if(training)
                     {
                         _currPlayer = Instantiate(playerAIPrefab);
-                        //_currPlayer.GetComponent<HitBallAgent>().ball = _currBall.GetComponent<Transform>();
                     }
                     else
                     {
@@ -396,6 +396,21 @@ public class GameManager : MonoBehaviour
                 else
                 {
                     _currLevel = Instantiate(levels[Level]);
+
+                    //if AI playing
+                    HitBallAgent hitBallAgentAI = FindObjectOfType<HitBallAgent>();
+                    if(hitBallAgentAI != null)
+                    {
+                        //find all bricks in lvl
+                        Brick[] bricks = FindObjectsOfType<Brick>();
+
+
+
+                        //overwrite prev bricks arr
+                        hitBallAgentAI.bricks = new Brick[bricks.Length];
+                        //set to agent bricks
+                        hitBallAgentAI.bricks = bricks;
+                    }
 
                     SwitchState(State.PLAY);
                 }
