@@ -13,7 +13,9 @@ public class HitBallAgent : Agent
     public override void OnEpisodeBegin()
     {
         //need to give it time to allow level destruction
-        GameManager.Instance.SwitchState(GameManager.State.INIT, delay: 1f);
+        GameManager.Instance.SwitchState(GameManager.State.INIT, delay: 2f);
+
+        transform.position = new Vector3(0, -18, 0);
 
     }
 
@@ -67,7 +69,7 @@ public class HitBallAgent : Agent
 
         float moveX = actions.ContinuousActions[0];
 
-        float moveSpeed = 1f;
+        float moveSpeed = 10f;
 
         transform.position += new Vector3(moveX, 0, 0) * Time.deltaTime * moveSpeed;
     }

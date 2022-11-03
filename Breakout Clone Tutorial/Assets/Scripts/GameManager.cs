@@ -152,7 +152,7 @@ public class GameManager : MonoBehaviour
             case State.LOADLEVEL:
                 break;
             case State.GAMEOVER:
-                if( Input.anyKeyDown)
+                if( Input.anyKeyDown && !training)
                 {
                     SwitchState(State.MENU);
                 }
