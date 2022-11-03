@@ -15,8 +15,8 @@ public class HitBallAgent : Agent
         //need to give it time to allow level destruction
         GameManager.Instance.SwitchState(GameManager.State.INIT, delay: 2f);
 
-        transform.position = new Vector3(0, -18, 0);
-
+        //spawn randomly on new episode begin
+        transform.localPosition = new Vector3(Random.Range(-32.6f, 32.6f), -18, 0);
     }
 
     public override void CollectObservations(VectorSensor sensor)

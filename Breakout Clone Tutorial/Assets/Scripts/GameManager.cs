@@ -128,7 +128,16 @@ public class GameManager : MonoBehaviour
                     //if dr bc mode or balls left:
                     if( DrBC_Mode == true || Balls > 0 )
                     {
-                        _currBall = Instantiate(ballPrefab);
+                        //random ball spawn
+                        _currBall = Instantiate(
+                            ballPrefab, 
+                            new Vector3(
+                                Random.Range(-32.6f, 32.6f), 
+                                Random.Range(0f, 18f), 
+                                0 
+                            ),
+                            Quaternion.identity
+                        );
 
                         HitBallAgent hitBallAgent = _currPlayer.GetComponent<HitBallAgent>();
                         if( hitBallAgent != null)

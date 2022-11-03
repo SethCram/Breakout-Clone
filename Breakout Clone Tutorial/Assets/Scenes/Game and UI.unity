@@ -9887,5 +9887,10 @@ PrefabInstance:
       propertyPath: m_BehaviorType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7105323149887213374, guid: 2f1523afcf5c32f48a2cee3cb0c57804,
+        type: 3}
+      propertyPath: MaxStep
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f1523afcf5c32f48a2cee3cb0c57804, type: 3}
