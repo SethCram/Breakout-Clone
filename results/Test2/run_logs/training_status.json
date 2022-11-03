@@ -2,22 +2,22 @@
     "HitBall": {
         "checkpoints": [
             {
-                "steps": 2048,
-                "file_path": "results\\ppo\\HitBall\\HitBall-2048.onnx",
+                "steps": 2368,
+                "file_path": "results\\Test2\\HitBall\\HitBall-2368.onnx",
                 "reward": null,
-                "creation_time": 1667449040.048861,
+                "creation_time": 1667449152.3627584,
                 "auxillary_file_paths": [
-                    "results\\ppo\\HitBall\\HitBall-2048.pt"
+                    "results\\Test2\\HitBall\\HitBall-2368.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 2048,
-            "file_path": "results\\ppo\\HitBall.onnx",
+            "steps": 2368,
+            "file_path": "results\\Test2\\HitBall.onnx",
             "reward": null,
-            "creation_time": 1667449040.048861,
+            "creation_time": 1667449152.3627584,
             "auxillary_file_paths": [
-                "results\\ppo\\HitBall\\HitBall-2048.pt"
+                "results\\Test2\\HitBall\\HitBall-2368.pt"
             ]
         }
     },

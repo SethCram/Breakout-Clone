@@ -81,6 +81,13 @@ public class Ball : MonoBehaviour
         {
             GameManager.Instance.Balls--; //subtrcts 1 from amt of balls game manager has
 
+            //if AI playing
+            HitBallAgent hitBallAgent = FindObjectOfType<HitBallAgent>();
+            if(hitBallAgent != null)
+            {
+                hitBallAgent.AddReward(-10f);
+            }
+
             Destroy(gameObject);
         }
     }
@@ -121,6 +128,22 @@ public class Ball : MonoBehaviour
         {
             //print("Brick hit audio should play");
             brickHitAudio.Play(); //play hit audio
+
+            //if AI playing
+            HitBallAgent hitBallAgent = FindObjectOfType<HitBallAgent>();
+            if(hitBallAgent != null)
+            {
+                hitBallAgent.AddReward(+1f);
+            }
+        }
+        else if( collision.gameObject.tag == "Player" )
+        {
+            //if AI playing
+            HitBallAgent hitBallAgent = FindObjectOfType<HitBallAgent>();
+            if(hitBallAgent != null)
+            {
+                hitBallAgent.AddReward(+0.1f);
+            }
         }
 
         if (xStuck)

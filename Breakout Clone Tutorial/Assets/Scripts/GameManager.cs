@@ -46,6 +46,9 @@ public class GameManager : MonoBehaviour
 
     public bool DrBC_Mode;
 
+    public bool training = false;
+    [SerializeField] private GameObject playerAIPrefab;
+
     //private int LEFT_CLICK = 0;
 
     // Start is called before the first frame update
@@ -60,6 +63,14 @@ public class GameManager : MonoBehaviour
 
         clipsLeftToPlay = new List<AudioClip>(); //init list
         ResetClipsToPlay();
+
+        /*Already done on episode begin
+        if(training)
+        {
+            //don't wait for menu
+            SwitchState(State.INIT);
+        }
+        */
 
         //Could use: PlayerPrefs.DeleteKey("highscore"); //resets highscore everytime start a session
     }
@@ -119,6 +130,12 @@ public class GameManager : MonoBehaviour
                     if( DrBC_Mode == true || Balls > 0 )
                     {
                         _currBall = Instantiate(ballPrefab);
+
+                        HitBallAgent hitBallAgent = _currPlayer.GetComponent<HitBallAgent>();
+                        if( hitBallAgent != null)
+                        {
+                            hitBallAgent.ball = _currBall.GetComponent<Transform>();
+                        }
                     }
                     else //no balls left and not in dr bc mode
                     {
@@ -344,7 +361,15 @@ public class GameManager : MonoBehaviour
                 }
                 if (_currPlayer == null)
                 {
-                    _currPlayer = Instantiate(playerPrefab);
+                    if(training)
+                    {
+                        _currPlayer = Instantiate(playerAIPrefab);
+                        //_currPlayer.GetComponent<HitBallAgent>().ball = _currBall.GetComponent<Transform>();
+                    }
+                    else
+                    {
+                        _currPlayer = Instantiate(playerPrefab);
+                    }
                 }
                 SwitchState(State.LOADLEVEL);
                 break;
@@ -377,6 +402,14 @@ public class GameManager : MonoBehaviour
                 break;
             case State.GAMEOVER:
                 panelGameOver.SetActive(true);
+
+                //if AI playing
+                HitBallAgent hitBallAgent = FindObjectOfType<HitBallAgent>();
+                if(hitBallAgent != null)
+                {
+                    hitBallAgent.EndEpisode();
+                }
+
                 break;
             case State.PAUSE:
                 panelPause.SetActive(true);
