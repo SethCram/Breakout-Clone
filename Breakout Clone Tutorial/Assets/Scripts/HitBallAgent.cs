@@ -10,13 +10,20 @@ public class HitBallAgent : Agent
     public Transform ball { private get; set; }
     public Brick[] bricks;
 
+    private Rigidbody _rigidbody;
+
+    private void Start()
+    {
+        _rigidbody = GetComponent<Rigidbody>();
+    }
+
     public override void OnEpisodeBegin()
     {
         //need to give it time to allow level destruction
         GameManager.Instance.SwitchState(GameManager.State.INIT, delay: 2f);
 
         //spawn randomly on new episode begin
-        transform.localPosition = new Vector3(Random.Range(-32.6f, 32.6f), -18, 0);
+        transform.localPosition = new Vector3(Random.Range(GameManager.LOCAL_POSITION_MIN, GameManager.LOCAL_POSITION_MAX), -18, 0);
     }
 
     public override void CollectObservations(VectorSensor sensor)
@@ -29,11 +36,15 @@ public class HitBallAgent : Agent
         
         if( ball != null)
         {
+            //should avoid destroying the ball? but would still be destroyed tween scene changes
+
             //ball position
            sensor.AddObservation(ball.position);
 
             //difference between AI player and ball pos's
-            sensor.AddObservation(transform.position - ball.position);
+            //sensor.AddObservation(transform.position - ball.position);
+
+            //print($"Observation size = {sensor.ObservationSize()}");
         }
 
         //bricks positions?
@@ -41,7 +52,7 @@ public class HitBallAgent : Agent
         {
             if(brick != null)
             {
-                sensor.AddObservation(brick.GetComponent<Transform>().position);
+                //sensor.AddObservation(brick.GetComponent<Transform>().position);
             }
             
         }
@@ -57,9 +68,14 @@ public class HitBallAgent : Agent
     {
         ActionSegment<float> continuousActions = actionsOut.ContinuousActions;
 
-        continuousActions[0] = Input.GetAxisRaw("Horizontal") * 10;
+        continuousActions[0] = Input.GetAxisRaw("Horizontal");
     }
 
+    /// <summary>
+    /// Upon action reveived, move AI player 
+    ///  if they desired to move somewhere within bounds.
+    /// </summary>
+    /// <param name="actions"></param>
     public override void OnActionReceived(ActionBuffers actions)
     {
         //ML alg only work with numbers
@@ -69,8 +85,14 @@ public class HitBallAgent : Agent
 
         float moveX = actions.ContinuousActions[0];
 
-        float moveSpeed = 10f;
+        float desiredX = transform.position.x + moveX;
 
-        transform.position += new Vector3(moveX, 0, 0) * Time.deltaTime * moveSpeed;
+        //if don't desire to move out of bounds
+        if( !(desiredX >  GameManager.LOCAL_POSITION_MAX) &&
+            !(desiredX < GameManager.LOCAL_POSITION_MIN) )
+            {
+                //apply motion
+                _rigidbody.MovePosition(new Vector3(desiredX, GameManager.LOCAL_PLAYER_Y, 0)); 
+            }
     }
 }

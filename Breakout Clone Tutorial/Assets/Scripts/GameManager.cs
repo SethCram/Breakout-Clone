@@ -49,6 +49,10 @@ public class GameManager : MonoBehaviour
     public bool training = false;
     [SerializeField] private GameObject playerAIPrefab;
 
+    public const float LOCAL_POSITION_MAX = 32.6f;
+    public const float LOCAL_POSITION_MIN = -32.6f;
+    public const float LOCAL_PLAYER_Y = -17f;
+
     //private int LEFT_CLICK = 0;
 
     // Start is called before the first frame update
@@ -132,7 +136,7 @@ public class GameManager : MonoBehaviour
                         _currBall = Instantiate(
                             ballPrefab, 
                             new Vector3(
-                                Random.Range(-32.6f, 32.6f), 
+                                Random.Range(LOCAL_POSITION_MIN, LOCAL_POSITION_MAX), 
                                 Random.Range(0f, 18f), 
                                 0 
                             ),
@@ -342,6 +346,8 @@ public class GameManager : MonoBehaviour
 
                 if (_currPlayer != null)
                 {
+                    Debug.LogWarning("Current player destroyed!");
+
                     Destroy(_currPlayer);
                 }
 

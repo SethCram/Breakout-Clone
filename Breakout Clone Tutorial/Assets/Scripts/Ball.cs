@@ -85,7 +85,7 @@ public class Ball : MonoBehaviour
             HitBallAgent hitBallAgent = FindObjectOfType<HitBallAgent>();
             if(hitBallAgent != null)
             {
-                hitBallAgent.AddReward(-10f);
+                hitBallAgent.AddReward(-1f);
             }
 
             Destroy(gameObject);
@@ -133,7 +133,7 @@ public class Ball : MonoBehaviour
             HitBallAgent hitBallAgent = FindObjectOfType<HitBallAgent>();
             if(hitBallAgent != null)
             {
-                hitBallAgent.AddReward(+1f);
+                //hitBallAgent.AddReward(+1f);
             }
         }
         else if( collision.gameObject.tag == "Player" )
@@ -142,7 +142,7 @@ public class Ball : MonoBehaviour
             HitBallAgent hitBallAgent = FindObjectOfType<HitBallAgent>();
             if(hitBallAgent != null)
             {
-                hitBallAgent.AddReward(+0.1f);
+                hitBallAgent.AddReward(1f);
             }
         }
 

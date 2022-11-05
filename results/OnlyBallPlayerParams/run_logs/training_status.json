@@ -1,0 +1,29 @@
+{
+    "HitBall": {
+        "checkpoints": [
+            {
+                "steps": 32990,
+                "file_path": "results\\OnlyBallPlayerParams\\HitBall\\HitBall-32990.onnx",
+                "reward": 0.0,
+                "creation_time": 1667686751.208857,
+                "auxillary_file_paths": [
+                    "results\\OnlyBallPlayerParams\\HitBall\\HitBall-32990.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 32990,
+            "file_path": "results\\OnlyBallPlayerParams\\HitBall.onnx",
+            "reward": 0.0,
+            "creation_time": 1667686751.208857,
+            "auxillary_file_paths": [
+                "results\\OnlyBallPlayerParams\\HitBall\\HitBall-32990.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.28.0",
+        "torch_version": "1.7.1+cpu"
+    }
+}
