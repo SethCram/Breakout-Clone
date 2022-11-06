@@ -90,8 +90,8 @@ public class HitBallAgent : Agent
         float desiredX = transform.position.x + moveX;
 
         //if don't desire to move out of bounds
-        if( !(desiredX >  BreakoutConstants.LOCAL_POSITION_MAX) &&
-            !(desiredX < BreakoutConstants.LOCAL_POSITION_MIN) )
+        if( !(desiredX >  BreakoutConstants.LOCAL_POSITION_MAX + transform.position.x) &&
+            !(desiredX < BreakoutConstants.LOCAL_POSITION_MIN + transform.position.x) )
             {
                 //apply motion
                 _rigidbody.MovePosition(new Vector3(desiredX, BreakoutConstants.LOCAL_PLAYER_Y, 0)); 

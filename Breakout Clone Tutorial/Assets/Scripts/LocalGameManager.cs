@@ -78,6 +78,7 @@ public class LocalGameManager : MonoBehaviour
         {
             //reset cam to proper spot
             FindObjectOfType<Camera>().GetComponent<Transform>().position = new Vector3(0, 0, BreakoutConstants.SOLO_CAM_START_Z);
+            FindObjectOfType<Camera>().orthographicSize = BreakoutConstants.SOLO_CAM_SIZE;
         }
 
         //Could use: PlayerPrefs.DeleteKey("highscore"); //resets highscore everytime start a session

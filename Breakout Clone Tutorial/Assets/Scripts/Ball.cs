@@ -40,6 +40,8 @@ void Start()
     /// </summary>
     public void Respawn()
     {
+        print("Respawn Ball.");
+
         //stop ball motion
         _rigidbodyComp.velocity = Vector3.zero;
 
