@@ -124,6 +124,80 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &692285154
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2105867209750341212, guid: 07194266e6b0ae54a9c0b7205fb8983b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2105867209750341212, guid: 07194266e6b0ae54a9c0b7205fb8983b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2105867209750341212, guid: 07194266e6b0ae54a9c0b7205fb8983b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2105867209750341212, guid: 07194266e6b0ae54a9c0b7205fb8983b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2105867209750341212, guid: 07194266e6b0ae54a9c0b7205fb8983b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2105867209750341212, guid: 07194266e6b0ae54a9c0b7205fb8983b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2105867209750341212, guid: 07194266e6b0ae54a9c0b7205fb8983b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2105867209750341212, guid: 07194266e6b0ae54a9c0b7205fb8983b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2105867209750341212, guid: 07194266e6b0ae54a9c0b7205fb8983b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2105867209750341212, guid: 07194266e6b0ae54a9c0b7205fb8983b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2105867209750341212, guid: 07194266e6b0ae54a9c0b7205fb8983b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2105867209750341213, guid: 07194266e6b0ae54a9c0b7205fb8983b,
+        type: 3}
+      propertyPath: m_Name
+      value: TestGameEnvironment (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2105867209750341213, guid: 07194266e6b0ae54a9c0b7205fb8983b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 07194266e6b0ae54a9c0b7205fb8983b, type: 3}
 --- !u!1 &695210878
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,7 +228,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &695210880
 MonoBehaviour:
@@ -327,7 +401,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 100
+  orthographic size: 20
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -5273,7 +5347,7 @@ PrefabInstance:
     - target: {fileID: 7105323149887213360, guid: 2f1523afcf5c32f48a2cee3cb0c57804,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7105323149887213360, guid: 2f1523afcf5c32f48a2cee3cb0c57804,
         type: 3}
@@ -5367,7 +5441,7 @@ PrefabInstance:
     - target: {fileID: 2105867209750341212, guid: 07194266e6b0ae54a9c0b7205fb8983b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2105867209750341212, guid: 07194266e6b0ae54a9c0b7205fb8983b,
         type: 3}
@@ -5422,7 +5496,7 @@ PrefabInstance:
     - target: {fileID: 2105867209750341213, guid: 07194266e6b0ae54a9c0b7205fb8983b,
         type: 3}
       propertyPath: m_Name
-      value: EntireGameEnvironment
+      value: SoloGameEnvironment
       objectReference: {fileID: 0}
     - target: {fileID: 2105867209750341213, guid: 07194266e6b0ae54a9c0b7205fb8983b,
         type: 3}

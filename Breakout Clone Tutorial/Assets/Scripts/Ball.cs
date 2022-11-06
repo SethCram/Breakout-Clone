@@ -45,7 +45,7 @@ void Start()
     /// </summary>
     public void Respawn()
     {
-        print("Respawn Ball.");
+        //print("Respawn Ball.");
 
         //stop ball motion
         _rigidbodyComp.velocity = Vector3.zero;
@@ -116,7 +116,7 @@ void Start()
 
     private IEnumerator Stuck()
     {
-        print("Checking if stuck");
+        //print("Checking if stuck");
 
         checkingifStuck = true;
 
@@ -125,7 +125,7 @@ void Start()
         
         if (0 <= _velocity.y && _velocity.y < 1 || -1 < _velocity.y && _velocity.y <= 0 )
         {
-            print("y is stuck");
+            //print("y is stuck");
 
             yStuck = true;
 
@@ -133,7 +133,7 @@ void Start()
 
         if (0 == _velocity.x || -0.1 <=_velocity.x && _velocity.x < 0.1)
         {
-            print("x is stuck");
+            //print("x is stuck");
 
             xStuck = true;
 
@@ -161,7 +161,7 @@ void Start()
 
         if (xStuck)
         {
-            print("Fixed x being stuck");
+            //print("Fixed x being stuck");
 
             _rigidbodyComp.velocity = moveToCenter;
 
@@ -169,11 +169,9 @@ void Start()
         }
         else if (yStuck)
         {
-            print("Fixed y being stuck");
+            //print("Fixed y being stuck");
 
             _rigidbodyComp.velocity = moveToCenterBottom;
-
-            //_rigidbodyComp.velocity = new Vector3(18, -2, 0);
 
             yStuck = false;
         }

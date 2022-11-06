@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Diagnostics;
 
 public class LocalGameManager : MonoBehaviour
 {
@@ -48,6 +49,8 @@ public class LocalGameManager : MonoBehaviour
     [SerializeField] private GameObject playerAIPrefab;
 
     private HitBallAgent hitBallAgentAI;
+
+    private Stopwatch stopwatch;
 
     //private int LEFT_CLICK = 0;
 
@@ -309,32 +312,7 @@ public class LocalGameManager : MonoBehaviour
 
     #region State
 
-    //to change state to passed in state:
-    public void SwitchState(State newState, float delay = 0) //aka next state logic process?
-    {
-        //print("Switch state to " + newState);
-
-        //waits zero seconds unless 'delay' arg overwritten:
-        StartCoroutine(SwitchDelay(newState, delay));
-    }
-
-    private IEnumerator SwitchDelay(State newState, float delay) //changes _state to specified state and passes to end then begin after changing
-    {
-        _isSwitchingState = true;
-
-        yield return new WaitForSeconds(delay);
-
-        EndState();
-
-        _state = newState; //bc just changed states below
-
-        BeginState(newState);
-
-        _isSwitchingState = false;
-
-    }
-
-    //does operations based on current state
+     //does operations based on current state
     private void BeginState(State newState) //aka output logic process
     {
         //print("Current state: " + newState);
@@ -363,7 +341,7 @@ public class LocalGameManager : MonoBehaviour
 
                 if (_currPlayer != null)
                 {
-                    Debug.LogWarning("Current player destroyed!");
+                    print("Current player destroyed!");
 
                     Destroy(_currPlayer);
                 }
@@ -438,6 +416,14 @@ public class LocalGameManager : MonoBehaviour
             case State.PLAY:
                 //debug lvl changes: SwitchState(State.LEVELCOMPLETED, delay: 2);
 
+                //if AI playing
+                if (hitBallAgentAI != null)
+                {
+                    stopwatch = Stopwatch.StartNew();
+
+                    //print($"Start Elapsed ms = {stopwatch.ElapsedMilliseconds}");
+                }
+
                 break;
             case State.LEVELCOMPLETED:
 
@@ -446,6 +432,15 @@ public class LocalGameManager : MonoBehaviour
                 _currBall.SetActive(false);
                 Destroy(_currLevel);
 
+                //if AI playing
+                if (hitBallAgentAI != null)
+                {
+                    //give higher reward quicker the level's beaten (typically addition of around 4 at 200_000 ms elapsed)
+                    hitBallAgentAI.AddReward(1_000_000 * (1/stopwatch.ElapsedMilliseconds) );
+
+                    print($"End Elapsed ms = {stopwatch.ElapsedMilliseconds}");
+                }
+                    
                 Level++; //add to level method
 
                 panelLevelCompleted.SetActive(true);
@@ -511,6 +506,32 @@ public class LocalGameManager : MonoBehaviour
                 break;
                 */
         }
+    }
+
+
+    //to change state to passed in state:
+    public void SwitchState(State newState, float delay = 0) //aka next state logic process?
+    {
+        //print("Switch state to " + newState);
+
+        //waits zero seconds unless 'delay' arg overwritten:
+        StartCoroutine(SwitchDelay(newState, delay));
+    }
+
+    private IEnumerator SwitchDelay(State newState, float delay) //changes _state to specified state and passes to end then begin after changing
+    {
+        _isSwitchingState = true;
+
+        yield return new WaitForSeconds(delay);
+
+        EndState();
+
+        _state = newState; //bc just changed states below
+
+        BeginState(newState);
+
+        _isSwitchingState = false;
+
     }
 
     private void EndState()
