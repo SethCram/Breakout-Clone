@@ -32,6 +32,11 @@ void Start()
 
         brickHitAudio = GetComponent<AudioSource>();
 
+        if( hitBallAgentAI != null)
+        {
+            brickHitAudio.mute = true;
+        }
+
         //Respawn();
     }
 

@@ -129,6 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 35
+  hitBallAgentAI: {fileID: 0}
   outOfBounds: 0
 --- !u!82 &-4533121890533600571
 AudioSource:
@@ -139,7 +140,8 @@ AudioSource:
   m_GameObject: {fileID: 2536569487265605667}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 64653393f81030448ab66d0b1f8060fb,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 70748a9a5514bf945a8e9e0ffb51172d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
