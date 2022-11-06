@@ -12,9 +12,12 @@ public class Brick : MonoBehaviour
     private Material _ogMaterial;
     private Renderer _renderer;
 
+    private LocalGameManager localGameManager;
+
     // Start is called before the first frame update
     void Start()
     {
+        localGameManager = transform.parent.parent.GetComponentInChildren<LocalGameManager>();
 
         _renderer = GetComponent<Renderer>();
 
@@ -39,7 +42,7 @@ public class Brick : MonoBehaviour
         //brick destroyed:
         if (hits <= 0 )
         {
-            GameManager.Instance.Score += points; //allowed bc it's a static var
+            localGameManager.Score += points; 
             Destroy(gameObject);
         }
 

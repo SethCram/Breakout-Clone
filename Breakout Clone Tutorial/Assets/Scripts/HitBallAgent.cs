@@ -17,12 +17,13 @@ public class HitBallAgent : Agent
         _rigidbody = GetComponent<Rigidbody>();
     }
 
+
     public void Respawn()
     {
         //spawn randomly on new episode begin
         transform.localPosition = new Vector3(
-            Random.Range(GameManager.LOCAL_POSITION_MIN, GameManager.LOCAL_POSITION_MAX), 
-            GameManager.LOCAL_PLAYER_Y, 
+            Random.Range(BreakoutConstants.LOCAL_POSITION_MIN, BreakoutConstants.LOCAL_POSITION_MAX), 
+            BreakoutConstants.LOCAL_PLAYER_Y, 
             0
         );
     }
@@ -89,11 +90,11 @@ public class HitBallAgent : Agent
         float desiredX = transform.position.x + moveX;
 
         //if don't desire to move out of bounds
-        if( !(desiredX >  GameManager.LOCAL_POSITION_MAX) &&
-            !(desiredX < GameManager.LOCAL_POSITION_MIN) )
+        if( !(desiredX >  BreakoutConstants.LOCAL_POSITION_MAX) &&
+            !(desiredX < BreakoutConstants.LOCAL_POSITION_MIN) )
             {
                 //apply motion
-                _rigidbody.MovePosition(new Vector3(desiredX, GameManager.LOCAL_PLAYER_Y, 0)); 
+                _rigidbody.MovePosition(new Vector3(desiredX, BreakoutConstants.LOCAL_PLAYER_Y, 0)); 
             }
     }
 

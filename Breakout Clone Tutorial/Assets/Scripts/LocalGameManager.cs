@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
+public class LocalGameManager : MonoBehaviour
 {
     public GameObject ballPrefab;
     public GameObject playerPrefab;
@@ -37,9 +37,6 @@ public class GameManager : MonoBehaviour
     private List<AudioClip> clipsLeftToPlay; //to load all possible audio clips into at start of game
     private bool musicShouldPlay;
 
-    //not good practice: (singleton variable?)
-    public static GameManager Instance { get; private set; } //allows a prefab to 'get' an instance of the GameManager (can't set outside tho)
-
     //state stuff:
     public enum State { MENU, INIT, PLAY, LEVELCOMPLETED, LOADLEVEL, GAMEOVER, PAUSE, HELP };
     private State _state;
@@ -50,13 +47,6 @@ public class GameManager : MonoBehaviour
     public bool training = false;
     [SerializeField] private GameObject playerAIPrefab;
 
-    public const float LOCAL_POSITION_MAX = 32.6f;
-    public const float LOCAL_POSITION_MIN = -32.6f;
-    public const float LOCAL_PLAYER_Y = -17f;
-
-    public const float BALL_SPAWN_LOCAL_MIN_Y = 0f;
-    public const float BALL_SPAWN_LOCAL_MAX_Y = 18f;
-
     private HitBallAgent hitBallAgentAI;
 
     //private int LEFT_CLICK = 0;
@@ -66,8 +56,6 @@ public class GameManager : MonoBehaviour
     {
         //go to menu when start game
         SwitchState(State.MENU); //call def'd state names
-
-        Instance = this; //initializes instance
 
         audioSrc = GetComponent<AudioSource>();
 
@@ -150,6 +138,8 @@ public class GameManager : MonoBehaviour
                 {
                     //respawn ball
                     _currBallBallComp.Respawn();
+
+                    Balls--;
 
                     _currBallBallComp.outOfBounds = false;
                 }
@@ -379,12 +369,12 @@ public class GameManager : MonoBehaviour
                 {
                     if(training)
                     {
-                        _currPlayer = Instantiate(playerAIPrefab);
+                        _currPlayer = Instantiate(playerAIPrefab, parent: transform.parent);
                         hitBallAgentAI = _currPlayer.GetComponent<HitBallAgent>();
                     }
                     else
                     {
-                        _currPlayer = Instantiate(playerPrefab);
+                        _currPlayer = Instantiate(playerPrefab, parent: transform.parent);
                     }
                 }
                 //if already player
@@ -402,7 +392,7 @@ public class GameManager : MonoBehaviour
                 {
                     //spawn ball
                     _currBall = Instantiate(
-                        ballPrefab
+                        ballPrefab, parent: transform.parent
                     );
 
                     _currBallBallComp = _currBall.GetComponent<Ball>();
@@ -418,7 +408,8 @@ public class GameManager : MonoBehaviour
                 SwitchState(State.LOADLEVEL);
                 break;
             case State.PLAY:
-                //debug lvl changes: SwitchState(State.LEVELCOMPLETED, delay: 2);
+                //debug lvl changes: 
+                SwitchState(State.LEVELCOMPLETED, delay: 2);
 
                 break;
             case State.LEVELCOMPLETED:
@@ -442,7 +433,7 @@ public class GameManager : MonoBehaviour
                 }
                 else
                 {
-                    _currLevel = Instantiate(levels[Level]);
+                    _currLevel = Instantiate(levels[Level], parent: transform.parent);
 
                     _currBallBallComp.Respawn();
 
@@ -464,13 +455,15 @@ public class GameManager : MonoBehaviour
             case State.GAMEOVER:
                 panelGameOver.SetActive(true);
 
+                _currBall.SetActive(false);
+
                 //if AI playing
                 if(hitBallAgentAI != null)
                 {
                     hitBallAgentAI.EndEpisode();
 
                     //reset to init after delay
-                    GameManager.Instance.SwitchState(GameManager.State.INIT, delay: 2f);
+                    SwitchState(State.INIT, delay: 2f);
                 }
 
                 break;

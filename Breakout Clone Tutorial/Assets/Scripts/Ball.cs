@@ -51,8 +51,8 @@ void Start()
 
         //teleport ball to rando start pos
         transform.position = new Vector3(
-            UnityEngine.Random.Range(GameManager.LOCAL_POSITION_MIN, GameManager.LOCAL_POSITION_MAX),
-            UnityEngine.Random.Range(GameManager.BALL_SPAWN_LOCAL_MIN_Y, GameManager.BALL_SPAWN_LOCAL_MAX_Y),
+            UnityEngine.Random.Range(BreakoutConstants.LOCAL_POSITION_MIN, BreakoutConstants.LOCAL_POSITION_MAX),
+            UnityEngine.Random.Range(BreakoutConstants.BALL_SPAWN_LOCAL_MIN_Y, BreakoutConstants.BALL_SPAWN_LOCAL_MAX_Y),
             0
         );
 
@@ -97,11 +97,11 @@ void Start()
 
         //if ball's a bit below the player and not marked as out of bounds yet
         if (
-            transform.position.y < GameManager.LOCAL_PLAYER_Y - 3f &&
+            transform.position.y < BreakoutConstants.LOCAL_PLAYER_Y - 3f &&
             !outOfBounds
         ) 
         {
-            GameManager.Instance.Balls--; //subtrcts 1 from amt of balls game manager has
+            //GameManager.Instance.Balls--; //subtrcts 1 from amt of balls game manager has
 
             //if AI playing
             if(hitBallAgentAI != null)
