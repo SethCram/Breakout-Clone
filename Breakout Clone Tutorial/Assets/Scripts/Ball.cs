@@ -9,7 +9,6 @@ public class Ball : MonoBehaviour
     Rigidbody _rigidbodyComp;
     Vector3 _velocity;
     Renderer _renderer;
-    Transform _transform;
     private Vector3 moveToCenter;
     private Vector3 moveToCenterBottom;
     private bool checkingifStuck = false;
@@ -19,11 +18,14 @@ public class Ball : MonoBehaviour
 
     Vector3 middlePoint;
     private Vector3 middlePlayer;
+    [HideInInspector] public HitBallAgent hitBallAgentAI;
 
-    //public AudioClip brickHitAudio;
+    [HideInInspector] public Boolean outOfBounds = false;
 
-    // Start is called before the first frame update
-    void Start()
+//public AudioClip brickHitAudio;
+
+// Start is called before the first frame update
+void Start()
     {
 
         _rigidbodyComp = GetComponent<Rigidbody>();
@@ -32,11 +34,33 @@ public class Ball : MonoBehaviour
 
         brickHitAudio = GetComponent<AudioSource>();
 
-        Invoke("Launch", 0.5f);
+        Respawn();
 
         middlePoint = new Vector3(0, 0, 0);
 
         middlePlayer = new Vector3(0, -17, 0);
+    }
+
+    /// <summary>
+    /// Randomly respawn ball through stopping its motion and launching it after a delay.
+    /// </summary>
+    public void Respawn()
+    {
+        //stop ball motion
+        _rigidbodyComp.velocity = Vector3.zero;
+
+        //teleport ball to rando start pos
+        transform.position = new Vector3(
+            UnityEngine.Random.Range(GameManager.LOCAL_POSITION_MIN, GameManager.LOCAL_POSITION_MAX),
+            UnityEngine.Random.Range(GameManager.BALL_SPAWN_LOCAL_MIN_Y, GameManager.BALL_SPAWN_LOCAL_MAX_Y),
+            0
+        );
+
+        //activate ball
+        gameObject.SetActive(true);
+
+        //launch it w/ a delay
+        Invoke("Launch", 0.5f);
     }
 
     private void Launch()
@@ -44,14 +68,10 @@ public class Ball : MonoBehaviour
         _rigidbodyComp.velocity = Vector3.up * _speed;
     }
 
-
-
     // Update is called once per frame
     void Update()
     {
-        _transform = GetComponent<Transform>();
-
-        moveToCenter = middlePoint - _transform.position;
+        moveToCenter = middlePoint - transform.position;
 
         moveToCenterBottom = middlePlayer - transform.position;
     }
@@ -59,8 +79,6 @@ public class Ball : MonoBehaviour
     //physics:
     private void FixedUpdate()
     {
-
-
         _rigidbodyComp.velocity = _rigidbodyComp.velocity.normalized * _speed; //normalized sets amplitude to 1, so speed = velocity of rigidbody
 
         _velocity = _rigidbodyComp.velocity; //without updating veloctiy before collision, it wont bounce when hits the paddle?
@@ -77,18 +95,21 @@ public class Ball : MonoBehaviour
             StartCoroutine(Stuck());
         }
 
-        if (_renderer.isVisible == false) //if ball not on any camera's screen
+        //if ball's a bit below the player and not marked as out of bounds yet
+        if (
+            transform.position.y < GameManager.LOCAL_PLAYER_Y - 3f &&
+            !outOfBounds
+        ) 
         {
             GameManager.Instance.Balls--; //subtrcts 1 from amt of balls game manager has
 
             //if AI playing
-            HitBallAgent hitBallAgent = FindObjectOfType<HitBallAgent>();
-            if(hitBallAgent != null)
+            if(hitBallAgentAI != null)
             {
-                hitBallAgent.AddReward(-1f);
+                hitBallAgentAI.AddReward(-1f);
             }
 
-            Destroy(gameObject);
+            outOfBounds = true;
         }
     }
 
@@ -134,15 +155,6 @@ public class Ball : MonoBehaviour
             if(hitBallAgent != null)
             {
                 //hitBallAgent.AddReward(+1f);
-            }
-        }
-        else if( collision.gameObject.tag == "Player" )
-        {
-            //if AI playing
-            HitBallAgent hitBallAgent = FindObjectOfType<HitBallAgent>();
-            if(hitBallAgent != null)
-            {
-                hitBallAgent.AddReward(1f);
             }
         }
 

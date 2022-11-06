@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] levels;
 
     GameObject _currBall; //to store instantiated Ball
+    Ball _currBallBallComp;
     GameObject _currLevel; //bc instantiating lvls as objects
     GameObject _currPlayer;
     bool _isSwitchingState;
@@ -53,6 +54,11 @@ public class GameManager : MonoBehaviour
     public const float LOCAL_POSITION_MIN = -32.6f;
     public const float LOCAL_PLAYER_Y = -17f;
 
+    public const float BALL_SPAWN_LOCAL_MIN_Y = 0f;
+    public const float BALL_SPAWN_LOCAL_MAX_Y = 18f;
+
+    private HitBallAgent hitBallAgentAI;
+
     //private int LEFT_CLICK = 0;
 
     // Start is called before the first frame update
@@ -64,6 +70,13 @@ public class GameManager : MonoBehaviour
         Instance = this; //initializes instance
 
         audioSrc = GetComponent<AudioSource>();
+
+        //if training
+        if( training )
+        {
+            //mute the audio
+            audioSrc.mute = true;
+        }
 
         clipsLeftToPlay = new List<AudioClip>(); //init list
         ResetClipsToPlay();
@@ -126,33 +139,19 @@ public class GameManager : MonoBehaviour
             case State.INIT:
                 break;
             case State.PLAY:
-                //only instantiates new ball w/ not currently one in play:
-                if(_currBall == null) 
+                
+                //if not in dr bc mode and no balls left, gameover
+                if( !DrBC_Mode  && Balls < 0 )
                 {
-                    //if dr bc mode or balls left:
-                    if( DrBC_Mode == true || Balls > 0 )
-                    {
-                        //random ball spawn
-                        _currBall = Instantiate(
-                            ballPrefab, 
-                            new Vector3(
-                                Random.Range(LOCAL_POSITION_MIN, LOCAL_POSITION_MAX), 
-                                Random.Range(0f, 18f), 
-                                0 
-                            ),
-                            Quaternion.identity
-                        );
+                    SwitchState(State.GAMEOVER);
+                }
+                //if (in dr bc mode or have balls left) and ball out of bounds
+                else if( _currBallBallComp.outOfBounds )
+                {
+                    //respawn ball
+                    _currBallBallComp.Respawn();
 
-                        HitBallAgent hitBallAgent = _currPlayer.GetComponent<HitBallAgent>();
-                        if( hitBallAgent != null)
-                        {
-                            hitBallAgent.ball = _currBall.GetComponent<Transform>();
-                        }
-                    }
-                    else //no balls left and not in dr bc mode
-                    {
-                        SwitchState(State.GAMEOVER);
-                    }
+                    _currBallBallComp.outOfBounds = false;
                 }
 
                 if(_currLevel != null && _currLevel.transform.childCount == 0 && _isSwitchingState == false) //if no lvls left + not switching states
@@ -375,25 +374,58 @@ public class GameManager : MonoBehaviour
 
                     Destroy(_currLevel);
                 }
+
                 if (_currPlayer == null)
                 {
                     if(training)
                     {
                         _currPlayer = Instantiate(playerAIPrefab);
+                        hitBallAgentAI = _currPlayer.GetComponent<HitBallAgent>();
                     }
                     else
                     {
                         _currPlayer = Instantiate(playerPrefab);
                     }
                 }
+                //if already player
+                else
+                {
+                    //if AI playing
+                    if( hitBallAgentAI != null)
+                    {
+                        //respawn AI
+                        hitBallAgentAI.Respawn();
+                    }
+                }
+
+                if(_currBall == null)
+                {
+                    //spawn ball
+                    _currBall = Instantiate(
+                        ballPrefab
+                    );
+
+                    _currBallBallComp = _currBall.GetComponent<Ball>();
+
+                    //if AI playing
+                    if( hitBallAgentAI != null)
+                    {
+                        //fill out AI and ball fields for one another
+                        hitBallAgentAI.ball = _currBall.GetComponent<Transform>();
+                        _currBallBallComp.hitBallAgentAI = hitBallAgentAI;
+                    }
+                }
                 SwitchState(State.LOADLEVEL);
                 break;
             case State.PLAY:
+                //debug lvl changes: SwitchState(State.LEVELCOMPLETED, delay: 2);
+
                 break;
             case State.LEVELCOMPLETED:
-                
+
                 //destroy ball and level:
-                Destroy(_currBall);
+                //Destroy(_currBall);
+                _currBall.SetActive(false);
                 Destroy(_currLevel);
 
                 Level++; //add to level method
@@ -412,14 +444,13 @@ public class GameManager : MonoBehaviour
                 {
                     _currLevel = Instantiate(levels[Level]);
 
+                    _currBallBallComp.Respawn();
+
                     //if AI playing
-                    HitBallAgent hitBallAgentAI = FindObjectOfType<HitBallAgent>();
                     if(hitBallAgentAI != null)
                     {
                         //find all bricks in lvl
                         Brick[] bricks = FindObjectsOfType<Brick>();
-
-
 
                         //overwrite prev bricks arr
                         hitBallAgentAI.bricks = new Brick[bricks.Length];
@@ -434,10 +465,12 @@ public class GameManager : MonoBehaviour
                 panelGameOver.SetActive(true);
 
                 //if AI playing
-                HitBallAgent hitBallAgent = FindObjectOfType<HitBallAgent>();
-                if(hitBallAgent != null)
+                if(hitBallAgentAI != null)
                 {
-                    hitBallAgent.EndEpisode();
+                    hitBallAgentAI.EndEpisode();
+
+                    //reset to init after delay
+                    GameManager.Instance.SwitchState(GameManager.State.INIT, delay: 2f);
                 }
 
                 break;

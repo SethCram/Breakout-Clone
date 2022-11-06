@@ -17,13 +17,14 @@ public class HitBallAgent : Agent
         _rigidbody = GetComponent<Rigidbody>();
     }
 
-    public override void OnEpisodeBegin()
+    public void Respawn()
     {
-        //need to give it time to allow level destruction
-        GameManager.Instance.SwitchState(GameManager.State.INIT, delay: 2f);
-
         //spawn randomly on new episode begin
-        transform.localPosition = new Vector3(Random.Range(GameManager.LOCAL_POSITION_MIN, GameManager.LOCAL_POSITION_MAX), -18, 0);
+        transform.localPosition = new Vector3(
+            Random.Range(GameManager.LOCAL_POSITION_MIN, GameManager.LOCAL_POSITION_MAX), 
+            GameManager.LOCAL_PLAYER_Y, 
+            0
+        );
     }
 
     public override void CollectObservations(VectorSensor sensor)
@@ -95,4 +96,13 @@ public class HitBallAgent : Agent
                 _rigidbody.MovePosition(new Vector3(desiredX, GameManager.LOCAL_PLAYER_Y, 0)); 
             }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if( collision.gameObject.tag == "ball")
+        {
+            AddReward(1f);
+        }
+    }
+
 }
