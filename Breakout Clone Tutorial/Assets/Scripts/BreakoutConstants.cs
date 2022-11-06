@@ -11,4 +11,6 @@ public class BreakoutConstants : MonoBehaviour
 
     public const float BALL_SPAWN_LOCAL_MIN_Y = 0f;
     public const float BALL_SPAWN_LOCAL_MAX_Y = 18f;
+
+    public const float SOLO_CAM_START_Z = -50;
 }

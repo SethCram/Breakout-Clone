@@ -16,8 +16,6 @@ public class Ball : MonoBehaviour
     private bool xStuck = false;
     private AudioSource brickHitAudio;
 
-    Vector3 middlePoint;
-    private Vector3 middlePlayer;
     [HideInInspector] public HitBallAgent hitBallAgentAI;
 
     [HideInInspector] public Boolean outOfBounds = false;
@@ -34,11 +32,7 @@ void Start()
 
         brickHitAudio = GetComponent<AudioSource>();
 
-        Respawn();
-
-        middlePoint = new Vector3(0, 0, 0);
-
-        middlePlayer = new Vector3(0, -17, 0);
+        //Respawn();
     }
 
     /// <summary>
@@ -50,7 +44,7 @@ void Start()
         _rigidbodyComp.velocity = Vector3.zero;
 
         //teleport ball to rando start pos
-        transform.position = new Vector3(
+        transform.localPosition = new Vector3(
             UnityEngine.Random.Range(BreakoutConstants.LOCAL_POSITION_MIN, BreakoutConstants.LOCAL_POSITION_MAX),
             UnityEngine.Random.Range(BreakoutConstants.BALL_SPAWN_LOCAL_MIN_Y, BreakoutConstants.BALL_SPAWN_LOCAL_MAX_Y),
             0
@@ -71,9 +65,9 @@ void Start()
     // Update is called once per frame
     void Update()
     {
-        moveToCenter = middlePoint - transform.position;
+        moveToCenter = -transform.localPosition;
 
-        moveToCenterBottom = middlePlayer - transform.position;
+        moveToCenterBottom = Vector3.up*BreakoutConstants.LOCAL_PLAYER_Y - transform.localPosition;
     }
 
     //physics:
@@ -97,7 +91,7 @@ void Start()
 
         //if ball's a bit below the player and not marked as out of bounds yet
         if (
-            transform.position.y < BreakoutConstants.LOCAL_PLAYER_Y - 3f &&
+            transform.localPosition.y < BreakoutConstants.LOCAL_PLAYER_Y - 3f &&
             !outOfBounds
         ) 
         {

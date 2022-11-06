@@ -33,7 +33,7 @@ public class HitBallAgent : Agent
         //inputs for the AI to solve problem
 
         //AI player position
-        sensor.AddObservation(transform.position);
+        sensor.AddObservation(transform.localPosition);
 
         
         if( ball != null)
@@ -41,7 +41,7 @@ public class HitBallAgent : Agent
             //should avoid destroying the ball? but would still be destroyed tween scene changes
 
             //ball position
-           sensor.AddObservation(ball.position);
+           sensor.AddObservation(ball.localPosition);
 
             //difference between AI player and ball pos's
             //sensor.AddObservation(transform.position - ball.position);

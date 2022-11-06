@@ -51,6 +51,8 @@ public class LocalGameManager : MonoBehaviour
 
     //private int LEFT_CLICK = 0;
 
+    #region Unity Methods
+
     // Start is called before the first frame update
     void Start()
     {
@@ -59,21 +61,23 @@ public class LocalGameManager : MonoBehaviour
 
         audioSrc = GetComponent<AudioSource>();
 
-        //if training
-        if( training )
-        {
-            //mute the audio
-            audioSrc.mute = true;
-        }
-
         clipsLeftToPlay = new List<AudioClip>(); //init list
         ResetClipsToPlay();
 
         //Already done on episode begin?
         if(training)
         {
+            //mute the audio
+            audioSrc.mute = true;
+
             //don't wait for menu
             SwitchState(State.INIT);
+        }
+        //if not training
+        else
+        {
+            //reset cam to proper spot
+            FindObjectOfType<Camera>().GetComponent<Transform>().position = new Vector3(0, 0, BreakoutConstants.SOLO_CAM_START_Z);
         }
 
         //Could use: PlayerPrefs.DeleteKey("highscore"); //resets highscore everytime start a session
@@ -171,6 +175,10 @@ public class LocalGameManager : MonoBehaviour
         }
     }
 
+    #endregion Unity Methods
+
+    #region Audio
+
     //play a random clip from 'clips' list and remove it from the list:
     private void PlayRandomClip()
     {
@@ -200,6 +208,9 @@ public class LocalGameManager : MonoBehaviour
         }
     }
 
+    #endregion Audio
+
+    #region Getters and Setters
 
     private int _score;
 
@@ -230,6 +241,10 @@ public class LocalGameManager : MonoBehaviour
             ballsText.text = "LIVES: " + _balls; //whenever change balls, text updated
         }
     }
+
+    #endregion Getters and Setters
+
+    #region Buttons
 
     //attach this method to PlayButton by linking gamemanager to this button under "On Click ()" and selecting this method:
     public void PlayClicked() //need public to show in inspector
@@ -280,6 +295,18 @@ public class LocalGameManager : MonoBehaviour
 
         //also need to set unpauseState? no, should still be set
     }
+
+    #endregion Buttons
+
+    //apply pause settings:
+    public void pauseApp()
+    {
+        musicShouldPlay = false; //should pause music
+        Cursor.visible = true;
+        Time.timeScale = 0; //pause time
+    }
+
+    #region State
 
     //to change state to passed in state:
     public void SwitchState(State newState, float delay = 0) //aka next state logic process?
@@ -408,8 +435,7 @@ public class LocalGameManager : MonoBehaviour
                 SwitchState(State.LOADLEVEL);
                 break;
             case State.PLAY:
-                //debug lvl changes: 
-                SwitchState(State.LEVELCOMPLETED, delay: 2);
+                //debug lvl changes: SwitchState(State.LEVELCOMPLETED, delay: 2);
 
                 break;
             case State.LEVELCOMPLETED:
@@ -486,14 +512,6 @@ public class LocalGameManager : MonoBehaviour
         }
     }
 
-    //apply pause settings:
-    public void pauseApp()
-    {
-        musicShouldPlay = false; //should pause music
-        Cursor.visible = true;
-        Time.timeScale = 0; //pause time
-    }
-
     private void EndState()
     {
         //print("State ending: " + _state);
@@ -534,7 +552,6 @@ public class LocalGameManager : MonoBehaviour
                 */
         }
     }
+
+    #endregion State
 }
-
-
-
