@@ -151,12 +151,14 @@ void Start()
             //print("Brick hit audio should play");
             brickHitAudio.Play(); //play hit audio
 
+            /*
             //if AI playing
             HitBallAgent hitBallAgent = FindObjectOfType<HitBallAgent>();
             if(hitBallAgent != null)
             {
-                //hitBallAgent.AddReward(+1f);
+                hitBallAgent.AddReward(+1f);
             }
+            */
         }
 
         if (xStuck)

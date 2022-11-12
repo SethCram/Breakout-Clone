@@ -8,7 +8,8 @@ using Unity.MLAgents.Sensors;
 public class HitBallAgent : Agent
 {
     public Transform ball { private get; set; }
-    public Brick[] bricks;
+    
+    //public Brick[] bricks;
 
     private Rigidbody _rigidbody;
 
@@ -49,15 +50,17 @@ public class HitBallAgent : Agent
             //print($"Observation size = {sensor.ObservationSize()}");
         }
 
+        /*
         //bricks positions?
         foreach (Brick brick in bricks)
         {
             if(brick != null)
             {
-                //sensor.AddObservation(brick.GetComponent<Transform>().position);
+                sensor.AddObservation(brick.GetComponent<Transform>().position);
             }
             
         }
+        */
         
     }
 

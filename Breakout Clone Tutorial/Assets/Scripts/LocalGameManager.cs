@@ -459,6 +459,7 @@ public class LocalGameManager : MonoBehaviour
 
                     _currBallBallComp.Respawn();
 
+                    /*
                     //if AI playing
                     if(hitBallAgentAI != null)
                     {
@@ -470,6 +471,7 @@ public class LocalGameManager : MonoBehaviour
                         //set to agent bricks
                         hitBallAgentAI.bricks = bricks;
                     }
+                    */
 
                     SwitchState(State.PLAY);
                 }
