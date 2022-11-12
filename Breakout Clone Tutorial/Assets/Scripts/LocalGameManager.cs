@@ -52,6 +52,11 @@ public class LocalGameManager : MonoBehaviour
 
     private Stopwatch stopwatch;
 
+    private Stopwatch demoStopWatch;
+    private bool demoActive = false;
+    public float demoSecondsTimeout = 10f;
+    private Vector3 prevMousePos = Vector3.zero;
+
     //private int LEFT_CLICK = 0;
 
     #region Unity Methods
@@ -130,6 +135,27 @@ public class LocalGameManager : MonoBehaviour
                 {
                     currPanel = panelMenu;    
                 }
+
+                //check to see if demo stopwatch is done
+                if( demoStopWatch != null && !demoActive && demoStopWatch.ElapsedMilliseconds > demoSecondsTimeout * 1000)
+                {
+                    //if demo time
+
+                    demoActive = true;
+
+                    SwitchState(State.INIT); //will possibly trigger mult times before state switch?
+                }
+
+                //if any key pressed or mouse moved
+                if( Input.anyKeyDown || Input.mousePosition != prevMousePos )
+                {
+                    //restart stop watch
+                    demoStopWatch = Stopwatch.StartNew();
+
+                    //debug: print("demo stopwatch restarted");
+                }
+                //update mouse pos
+                prevMousePos = Input.mousePosition;
 
                 break;
             case State.INIT:
@@ -284,6 +310,8 @@ public class LocalGameManager : MonoBehaviour
 
     public void HelpClicked()
     {
+        demoStopWatch.Stop();
+
         panelHelp.SetActive(true);
 
         //also have to clear curr panel:
@@ -292,6 +320,8 @@ public class LocalGameManager : MonoBehaviour
 
     public void Help_BackClicked() 
     {
+        demoStopWatch = Stopwatch.StartNew();
+
         panelHelp.SetActive(false);
 
         //also have to set curr panel:
@@ -341,19 +371,23 @@ public class LocalGameManager : MonoBehaviour
 
                 if (_currPlayer != null)
                 {
-                    print("Current player destroyed!");
-
                     Destroy(_currPlayer);
                 }
 
                 Cursor.visible = true;
 
-                //if new highscore achieved + not invinsible
-                if (Score > PlayerPrefs.GetInt("highscore") && DrBC_Mode == false) //don't have to inititalize playerprefs vals bc starts at 0
+                //if new highscore achieved + not invinsible + demo not active (AI just played game)
+                if (Score > PlayerPrefs.GetInt("highscore") && DrBC_Mode == false && !demoActive) //don't have to inititalize playerprefs vals bc starts at 0
                 {
                     PlayerPrefs.SetInt("highscore", Score);
                 }
                 highscoreText.text = "HIGHSCORE: " + PlayerPrefs.GetInt("highscore");
+
+                //make sure demo deactive now
+                demoActive = false;
+
+                //start demo stop watch
+                demoStopWatch = Stopwatch.StartNew();
 
                 panelMenu.SetActive(true);
                 break;
@@ -364,6 +398,9 @@ public class LocalGameManager : MonoBehaviour
                 Level = 0;
                 Balls = 3;
 
+                //stop demo stop watch
+                demoStopWatch.Stop();
+
                 if(_currLevel != null) //so doesn't destroy 1st time around
                 {
                     //print($"{_currLevel} should be destroyed on INIT.");
@@ -373,7 +410,7 @@ public class LocalGameManager : MonoBehaviour
 
                 if (_currPlayer == null)
                 {
-                    if(training)
+                    if(training || demoActive)
                     {
                         _currPlayer = Instantiate(playerAIPrefab, parent: transform.parent);
                         hitBallAgentAI = _currPlayer.GetComponent<HitBallAgent>();
