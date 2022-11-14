@@ -50,7 +50,7 @@ public class LocalGameManager : MonoBehaviour
 
     private HitBallAgent hitBallAgentAI;
 
-    private Stopwatch stopwatch;
+    private Stopwatch rewardStopWatch;
 
     private Stopwatch demoStopWatch;
     private bool demoActive = false;
@@ -456,9 +456,9 @@ public class LocalGameManager : MonoBehaviour
                 //if AI playing
                 if (hitBallAgentAI != null)
                 {
-                    stopwatch = Stopwatch.StartNew();
+                    rewardStopWatch = Stopwatch.StartNew();
 
-                    //print($"Start Elapsed ms = {stopwatch.ElapsedMilliseconds}");
+                    //print($"Start Elapsed ms = {rewardStopWatch.ElapsedMilliseconds}");
                 }
 
                 break;
@@ -473,9 +473,9 @@ public class LocalGameManager : MonoBehaviour
                 if (hitBallAgentAI != null)
                 {
                     //give higher reward quicker the level's beaten (typically addition of around 4 at 200_000 ms elapsed)
-                    hitBallAgentAI.AddReward(1_000_000 * (1/stopwatch.ElapsedMilliseconds) );
+                    hitBallAgentAI.AddReward(1_000_000 * (1/rewardStopWatch.ElapsedMilliseconds) );
 
-                    print($"End Elapsed ms = {stopwatch.ElapsedMilliseconds}");
+                    print($"End Elapsed ms = {rewardStopWatch.ElapsedMilliseconds}");
                 }
                     
                 Level++; //add to level method

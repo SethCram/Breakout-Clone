@@ -1,26 +1,85 @@
+##PPO training = https://github.com/gzrjzcx/ML-agents/blob/master/docs/Training-PPO.md 
+
 behaviors:
   #name of brain we want to train
   HitBall: 
     trainer_type: ppo
     hyperparameters:
-      batch_size: 10
-      buffer_size: 100
-      learning_rate: 6e-6 #3.0e-4
-      beta: 5.0e-4
-      epsilon: 0.1 #0.2
-      lambd: 0.99
+      #batch_size is the number of experiences used for one iteration of weight updating
+      # should always be a fraction of the buffer_size
+      # Typical Range (Continuous): 512 - 5120
+      batch_size: 512 #10
+      #buffer_size corresponds to how many experiences (agent observations, actions and rewards obtained) 
+      # should be collected before we do any learning or updating of the model
+      # should be a multiple of batch_size
+      # larger buffer_size corresponds to more stable training updates.
+      # Typical Range: 2048 - 409600
+      buffer_size: 5120
+      #learning_rate corresponds to the strength of each weight change
+      # typically be decreased if training is unstable, and the reward does not consistently increase
+      # Typical Range: 1e-5 - 1e-3
+      learning_rate: 1e-5 #6e-6 #3.0e-4
+      #beta corresponds to the strength of the entropy regularization, which makes the policy "more random."
+      # ensures that agents properly explore the action space during training
+      # should be adjusted such that the entropy (measurable from TensorBoard) slowly decreases alongside increases in reward
+      # If entropy drops too quickly, increase beta. If entropy drops too slowly, decrease beta.
+      # Typical Range: 1e-4 - 1e-2
+      beta: 8e-4 #5.0e-4
+      #epsilon corresponds to the acceptable threshold of divergence between the old and new policies during weight updating
+      # this value small will result in more stable updates, but will also slow the training process
+      epsilon: 0.15 #0.1 #0.2
+      #how much the agent relies on its current value estimate when calculating an updated value estimate
+      # Low values correspond to relying more on the current value estimate (which can be high bias)
+      # high values correspond to relying more on the actual rewards received in the environment (which can be high variance)
+      # Can lead to more stable training process
+      # Typical Range: 0.9 - 0.95
+      lambd: 0.95 #0.99
+      #number of passes through the experience buffer during weight updating
+      # larger the batch_size, the larger it is acceptable to make this
+      # Decreasing this will ensure more stable updates, at the cost of slower learning.
+      # Typical Range: 3 - 10
+      # should change to 5?
       num_epoch: 3
       learning_rate_schedule: linear
       beta_schedule: constant
       epsilon_schedule: linear
     network_settings:
-      normalize: false #previously false, should be true?
+      #normalize corresponds to whether normalization is applied to the vector observation inputs
+      # based on the running average and variance of the vector observation
+      # helpful in complex continuous control probs
+      # should be true? (my prob not complex, but is cont)
+      normalize: false
+      #hidden_units correspond to how many units are in each fully connected layer of the neural network
+      # simple problems where the correct action is a straightforward combination of the observation inputs, this should be small.
+      # Typical Range: 32 - 512
+      # should this be doubled?
       hidden_units: 128
+      #More layers may be necessary for more complex control problems.
+      # Typical range: 1 - 3
       num_layers: 2
     reward_signals:
       extrinsic:
-        gamma: 0.99
+        #gamma corresponds to the discount factor for future rewards 
+        # In situations when the agent should be acting in the present in order to prepare for rewards in the distant future, 
+        # this value should be large. 
+        # In cases when rewards are more immediate, it can be smaller.
+        # Typical Range: 0.8 - 0.995
+        # should change to lower?
+        gamma: 0.9 #0.99
         strength: 1.0
+    #max_steps corresponds to how many steps of the simulation (multiplied by frame-skip) are run during the training process
+    # should be increased for more complex problems
+    # Typical Range: 5e5 - 1e7 (500,000 to 10,000,000)
     max_steps: 1000000 #previously 500,000
+    #time_horizon corresponds to how many steps of experience to collect per-agent before adding it to the experience buffer
+    # this parameter trades off between a less biased, but higher variance estimate (long time horizon)
+    # more biased, but less varied estimate (short time horizon)
+    # In cases where there are frequent rewards within an episode, or episodes are prohibitively large, a smaller number can be more ideal.
+    # This number should be large enough to capture all the important behavior within a sequence of an agent's actions.
+    # Typical Range: 32 - 2048
+    # could lower
     time_horizon: 64
-    summary_freq: 10000
+    #should increase as episode length increases
+    summary_freq: 30000
+
+# **Value Estimate decreasing but cumulative reward increasing**
