@@ -245,7 +245,7 @@ MonoBehaviour:
   GameEnviron: {fileID: 2105867209750341213, guid: 07194266e6b0ae54a9c0b7205fb8983b,
     type: 3}
   xSeperatedBy: 100
-  trainingEnvirons: 50
+  trainingEnvirons: 75
   training: 1
 --- !u!1 &705507993
 GameObject:

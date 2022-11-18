@@ -70,7 +70,7 @@ behaviors:
     #max_steps corresponds to how many steps of the simulation (multiplied by frame-skip) are run during the training process
     # should be increased for more complex problems
     # Typical Range: 5e5 - 1e7 (500,000 to 10,000,000)
-    max_steps: 10000000 #500,000
+    max_steps: 10000000 #2000000 #500,000
     #time_horizon corresponds to how many steps of experience to collect per-agent before adding it to the experience buffer
     # this parameter trades off between a less biased, but higher variance estimate (long time horizon)
     # more biased, but less varied estimate (short time horizon)
@@ -80,7 +80,7 @@ behaviors:
     # could lower
     time_horizon: 64
     #should increase as episode length increases
-    summary_freq: 30000
+    summary_freq: 400000 #30000 #should be 200000 since that's about how long episode takes? or should be a multiple of that?
 
 # **Value Estimate decreasing but cumulative reward increasing**
 # should incr batch_size for more stable learning (but slower learning)
