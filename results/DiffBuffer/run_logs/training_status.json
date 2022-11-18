@@ -1,0 +1,47 @@
+{
+    "HitBall": {
+        "checkpoints": [
+            {
+                "steps": 499946,
+                "file_path": "results\\DiffBuffer\\HitBall\\HitBall-499946.onnx",
+                "reward": 27.0,
+                "creation_time": 1668742057.3194396,
+                "auxillary_file_paths": [
+                    "results\\DiffBuffer\\HitBall\\HitBall-499946.pt"
+                ]
+            },
+            {
+                "steps": 999976,
+                "file_path": "results\\DiffBuffer\\HitBall\\HitBall-999976.onnx",
+                "reward": 16.625,
+                "creation_time": 1668742275.995361,
+                "auxillary_file_paths": [
+                    "results\\DiffBuffer\\HitBall\\HitBall-999976.pt"
+                ]
+            },
+            {
+                "steps": 1000040,
+                "file_path": "results\\DiffBuffer\\HitBall\\HitBall-1000040.onnx",
+                "reward": 16.625,
+                "creation_time": 1668742276.0203624,
+                "auxillary_file_paths": [
+                    "results\\DiffBuffer\\HitBall\\HitBall-1000040.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1000040,
+            "file_path": "results\\DiffBuffer\\HitBall.onnx",
+            "reward": 16.625,
+            "creation_time": 1668742276.0203624,
+            "auxillary_file_paths": [
+                "results\\DiffBuffer\\HitBall\\HitBall-1000040.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.28.0",
+        "torch_version": "1.7.1+cpu"
+    }
+}

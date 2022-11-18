@@ -475,7 +475,7 @@ public class LocalGameManager : MonoBehaviour
                     //give higher reward quicker the level's beaten (typically addition of around 4 at 200_000 ms elapsed)
                     hitBallAgentAI.AddReward(1_000_000 * (1/rewardStopWatch.ElapsedMilliseconds) );
 
-                    print($"End Elapsed ms = {rewardStopWatch.ElapsedMilliseconds}");
+                    //deubg: print($"End Elapsed ms = {rewardStopWatch.ElapsedMilliseconds}");
                 }
                     
                 Level++; //add to level method

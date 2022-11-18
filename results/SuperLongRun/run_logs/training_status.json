@@ -1,0 +1,65 @@
+{
+    "HitBall": {
+        "checkpoints": [
+            {
+                "steps": 8499988,
+                "file_path": "results\\SuperLongRun\\HitBall\\HitBall-8499988.onnx",
+                "reward": null,
+                "creation_time": 1668746763.3116324,
+                "auxillary_file_paths": [
+                    "results\\SuperLongRun\\HitBall\\HitBall-8499988.pt"
+                ]
+            },
+            {
+                "steps": 8999998,
+                "file_path": "results\\SuperLongRun\\HitBall\\HitBall-8999998.onnx",
+                "reward": 88.2,
+                "creation_time": 1668746974.7974522,
+                "auxillary_file_paths": [
+                    "results\\SuperLongRun\\HitBall\\HitBall-8999998.pt"
+                ]
+            },
+            {
+                "steps": 9499973,
+                "file_path": "results\\SuperLongRun\\HitBall\\HitBall-9499973.onnx",
+                "reward": 120.83333333333333,
+                "creation_time": 1668747190.3202484,
+                "auxillary_file_paths": [
+                    "results\\SuperLongRun\\HitBall\\HitBall-9499973.pt"
+                ]
+            },
+            {
+                "steps": 9999964,
+                "file_path": "results\\SuperLongRun\\HitBall\\HitBall-9999964.onnx",
+                "reward": 87.85714285714286,
+                "creation_time": 1668747402.7305884,
+                "auxillary_file_paths": [
+                    "results\\SuperLongRun\\HitBall\\HitBall-9999964.pt"
+                ]
+            },
+            {
+                "steps": 10000028,
+                "file_path": "results\\SuperLongRun\\HitBall\\HitBall-10000028.onnx",
+                "reward": 87.85714285714286,
+                "creation_time": 1668747402.7535882,
+                "auxillary_file_paths": [
+                    "results\\SuperLongRun\\HitBall\\HitBall-10000028.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 10000028,
+            "file_path": "results\\SuperLongRun\\HitBall.onnx",
+            "reward": 87.85714285714286,
+            "creation_time": 1668747402.7535882,
+            "auxillary_file_paths": [
+                "results\\SuperLongRun\\HitBall\\HitBall-10000028.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.28.0",
+        "torch_version": "1.7.1+cpu"
+    }
+}
