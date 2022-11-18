@@ -4,6 +4,7 @@ using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
+using Unity.MLAgents.Policies;
 
 public class HitBallAgent : Agent
 {
@@ -12,12 +13,18 @@ public class HitBallAgent : Agent
     //public Brick[] bricks;
 
     private Rigidbody _rigidbody;
+    private BehaviorParameters _behaviorParameters;
+    [HideInInspector]
+    public bool runningInInference = false;
 
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
-    }
 
+        _behaviorParameters = GetComponent<BehaviorParameters>();
+        //determine if running in inference: if communication off and model field filled
+        runningInInference = !Academy.Instance.IsCommunicatorOn && _behaviorParameters.Model != null;
+    }
 
     public void Respawn()
     {

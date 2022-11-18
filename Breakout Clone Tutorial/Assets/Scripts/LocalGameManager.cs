@@ -20,6 +20,7 @@ public class LocalGameManager : MonoBehaviour
     public GameObject panelGameOver;
     public GameObject panelPause;
     public GameObject panelHelp;
+    public GameObject panelPlayAItext;
 
     //to keep track of what panel active: (mainly for help screen)
     private GameObject currPanel;
@@ -72,7 +73,6 @@ public class LocalGameManager : MonoBehaviour
         clipsLeftToPlay = new List<AudioClip>(); //init list
         ResetClipsToPlay();
 
-        //Already done on episode begin?
         if(training)
         {
             //mute the audio
@@ -414,10 +414,14 @@ public class LocalGameManager : MonoBehaviour
                     {
                         _currPlayer = Instantiate(playerAIPrefab, parent: transform.parent);
                         hitBallAgentAI = _currPlayer.GetComponent<HitBallAgent>();
+                        
+                        panelPlayAItext.SetActive(true);
                     }
                     else
                     {
                         _currPlayer = Instantiate(playerPrefab, parent: transform.parent);
+
+                        panelPlayAItext.SetActive(false);
                     }
                 }
                 //if already player
@@ -446,6 +450,13 @@ public class LocalGameManager : MonoBehaviour
                         //fill out AI and ball fields for one another
                         hitBallAgentAI.ball = _currBall.GetComponent<Transform>();
                         _currBallBallComp.hitBallAgentAI = hitBallAgentAI;
+                    }
+
+                    //if training
+                    if( training )
+                    {
+                        //mute brick hit audio
+                        _currBallBallComp.GetComponent<AudioSource>().mute = true;
                     }
                 }
                 SwitchState(State.LOADLEVEL);
@@ -521,10 +532,27 @@ public class LocalGameManager : MonoBehaviour
                 //if AI playing
                 if(hitBallAgentAI != null)
                 {
+                    //if running in inference
+                    if( hitBallAgentAI.runningInInference )
+                    {
+                        //print reward at end of episode
+                        print($"Cumulative reward: {hitBallAgentAI.GetCumulativeReward()}");
+                    }
+
                     hitBallAgentAI.EndEpisode();
 
-                    //reset to init after delay
-                    SwitchState(State.INIT, delay: 2f);
+                    //if training
+                    if( training )
+                    {
+                        //reset to init after delay
+                        SwitchState(State.INIT, delay: 2f);
+                    }
+                    //running in inference(/hueristic?)
+                    else
+                    {
+                        //go back to main menu after delay
+                        SwitchState(State.MENU, delay: 2f);
+                    }
                 }
 
                 break;

@@ -14,7 +14,7 @@ public class Ball : MonoBehaviour
     private bool checkingifStuck = false;
     private bool yStuck = false;
     private bool xStuck = false;
-    private AudioSource brickHitAudio;
+    [HideInInspector] public AudioSource brickHitAudio;
 
     [HideInInspector] public HitBallAgent hitBallAgentAI;
 
@@ -25,19 +25,11 @@ public class Ball : MonoBehaviour
 // Start is called before the first frame update
 void Start()
     {
-
         _rigidbodyComp = GetComponent<Rigidbody>();
 
         _renderer = GetComponent<Renderer>();
 
         brickHitAudio = GetComponent<AudioSource>();
-
-        if( hitBallAgentAI != null)
-        {
-            brickHitAudio.mute = true;
-        }
-
-        //Respawn();
     }
 
     /// <summary>
