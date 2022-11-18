@@ -376,10 +376,14 @@ public class LocalGameManager : MonoBehaviour
 
                 Cursor.visible = true;
 
+                //debug: print($"demo active = {demoActive}");
+
                 //if new highscore achieved + not invinsible + demo not active (AI just played game)
-                if (Score > PlayerPrefs.GetInt("highscore") && DrBC_Mode == false && !demoActive) //don't have to inititalize playerprefs vals bc starts at 0
+                if (Score > PlayerPrefs.GetInt("highscore") && DrBC_Mode == false && !demoActive && !training) //don't have to inititalize playerprefs vals bc starts at 0
                 {
                     PlayerPrefs.SetInt("highscore", Score);
+
+                    print("New highscore set");
                 }
                 highscoreText.text = "HIGHSCORE: " + PlayerPrefs.GetInt("highscore");
 
@@ -470,6 +474,8 @@ public class LocalGameManager : MonoBehaviour
                     rewardStopWatch = Stopwatch.StartNew();
 
                     //print($"Start Elapsed ms = {rewardStopWatch.ElapsedMilliseconds}");
+
+                    //SwitchState(State.GAMEOVER, delay: 10f);
                 }
 
                 break;

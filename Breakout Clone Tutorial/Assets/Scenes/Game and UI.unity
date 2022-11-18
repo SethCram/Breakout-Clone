@@ -5399,6 +5399,23 @@ PrefabInstance:
       propertyPath: training
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2105867209684293700, guid: 07194266e6b0ae54a9c0b7205fb8983b,
+        type: 3}
+      propertyPath: levels.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2105867209684293700, guid: 07194266e6b0ae54a9c0b7205fb8983b,
+        type: 3}
+      propertyPath: levels.Array.data[0]
+      value: 
+      objectReference: {fileID: 7206980796885229867, guid: e262ace648ba1f342b48fee106f5986a,
+        type: 3}
+    - target: {fileID: 2105867209684293700, guid: 07194266e6b0ae54a9c0b7205fb8983b,
+        type: 3}
+      propertyPath: levels.Array.data[1]
+      value: 
+      objectReference: {fileID: 7206980796885229867, guid: e262ace648ba1f342b48fee106f5986a,
+        type: 3}
     - target: {fileID: 2105867209750341212, guid: 07194266e6b0ae54a9c0b7205fb8983b,
         type: 3}
       propertyPath: m_RootOrder
@@ -5504,20 +5521,25 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3007177980282460896, guid: 07194266e6b0ae54a9c0b7205fb8983b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4887350418912635746, guid: 07194266e6b0ae54a9c0b7205fb8983b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 10
+      value: -349.99997
       objectReference: {fileID: 0}
     - target: {fileID: 4887350418912635746, guid: 07194266e6b0ae54a9c0b7205fb8983b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 157
       objectReference: {fileID: 0}
     - target: {fileID: 8878361204149225510, guid: 07194266e6b0ae54a9c0b7205fb8983b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 349.99997
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07194266e6b0ae54a9c0b7205fb8983b, type: 3}
