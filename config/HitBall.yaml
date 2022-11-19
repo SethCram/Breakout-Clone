@@ -1,4 +1,4 @@
-##PPO training = https://github.com/gzrjzcx/ML-agents/blob/master/docs/Training-PPO.md 
+##PPO training = https://github.com/gzrjzcx/ML-agents/blob/master/docs/Training-PPO.md and https://www.youtube.com/watch?v=6sNIDqgICLY&list=PL8fePt58xRPY1-pkhMPus3GlUGXNdqMH5&index=5 
 
 behaviors:
   #name of brain we want to train
@@ -8,23 +8,23 @@ behaviors:
       #batch_size is the number of experiences used for one iteration of weight updating
       # should always be a fraction of the buffer_size
       # Typical Range (Continuous): 512 - 5120
-      batch_size: 2048 #512 #10
+      batch_size: 2048 #512
       #buffer_size corresponds to how many experiences (agent observations, actions and rewards obtained) 
       # should be collected before we do any learning or updating of the model
       # should be a multiple of batch_size
       # larger buffer_size corresponds to more stable training updates.
       # Typical Range: 2048 - 409600
-      buffer_size: 40960 #20480 #5120
+      buffer_size: 40960 #20480
       #learning_rate corresponds to the strength of each weight change
       # typically be decreased if training is unstable, and the reward does not consistently increase
       # Typical Range: 1e-5 - 1e-3
-      learning_rate: 1e-4 #1e-3 #1e-5 #6e-6 #3.0e-4
+      learning_rate: 1e-5 #1e-4
       #beta corresponds to the strength of the entropy regularization, which makes the policy "more random."
       # ensures that agents properly explore the action space during training
       # should be adjusted such that the entropy (measurable from TensorBoard) slowly decreases alongside increases in reward
       # If entropy drops too quickly, increase beta. If entropy drops too slowly, decrease beta.
       # Typical Range: 1e-4 - 1e-2
-      beta: 1e-3 #8e-4 #5.0e-4
+      beta: 1e-3 #8e-4 
       #epsilon corresponds to the acceptable threshold of divergence between the old and new policies during weight updating
       # this value small will result in more stable updates, but will also slow the training process
       epsilon: 0.2 #0.15
