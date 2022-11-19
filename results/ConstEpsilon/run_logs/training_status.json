@@ -1,0 +1,65 @@
+{
+    "HitBall": {
+        "checkpoints": [
+            {
+                "steps": 499986,
+                "file_path": "results\\ConstEpsilon\\HitBall\\HitBall-499986.onnx",
+                "reward": 172.0,
+                "creation_time": 1668806126.923357,
+                "auxillary_file_paths": [
+                    "results\\ConstEpsilon\\HitBall\\HitBall-499986.pt"
+                ]
+            },
+            {
+                "steps": 999939,
+                "file_path": "results\\ConstEpsilon\\HitBall\\HitBall-999939.onnx",
+                "reward": 135.16666666666666,
+                "creation_time": 1668806329.254611,
+                "auxillary_file_paths": [
+                    "results\\ConstEpsilon\\HitBall\\HitBall-999939.pt"
+                ]
+            },
+            {
+                "steps": 1499943,
+                "file_path": "results\\ConstEpsilon\\HitBall\\HitBall-1499943.onnx",
+                "reward": 76.25,
+                "creation_time": 1668806530.6881866,
+                "auxillary_file_paths": [
+                    "results\\ConstEpsilon\\HitBall\\HitBall-1499943.pt"
+                ]
+            },
+            {
+                "steps": 1999952,
+                "file_path": "results\\ConstEpsilon\\HitBall\\HitBall-1999952.onnx",
+                "reward": 120.0,
+                "creation_time": 1668806739.4606543,
+                "auxillary_file_paths": [
+                    "results\\ConstEpsilon\\HitBall\\HitBall-1999952.pt"
+                ]
+            },
+            {
+                "steps": 2000080,
+                "file_path": "results\\ConstEpsilon\\HitBall\\HitBall-2000080.onnx",
+                "reward": 120.0,
+                "creation_time": 1668806739.4866538,
+                "auxillary_file_paths": [
+                    "results\\ConstEpsilon\\HitBall\\HitBall-2000080.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 2000080,
+            "file_path": "results\\ConstEpsilon\\HitBall.onnx",
+            "reward": 120.0,
+            "creation_time": 1668806739.4866538,
+            "auxillary_file_paths": [
+                "results\\ConstEpsilon\\HitBall\\HitBall-2000080.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.28.0",
+        "torch_version": "1.7.1+cpu"
+    }
+}
