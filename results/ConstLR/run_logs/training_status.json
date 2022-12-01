@@ -1,0 +1,47 @@
+{
+    "HitBall": {
+        "checkpoints": [
+            {
+                "steps": 499957,
+                "file_path": "results\\ConstLR\\HitBall\\HitBall-499957.onnx",
+                "reward": 20.5,
+                "creation_time": 1668741287.123111,
+                "auxillary_file_paths": [
+                    "results\\ConstLR\\HitBall\\HitBall-499957.pt"
+                ]
+            },
+            {
+                "steps": 999958,
+                "file_path": "results\\ConstLR\\HitBall\\HitBall-999958.onnx",
+                "reward": null,
+                "creation_time": 1668741518.872081,
+                "auxillary_file_paths": [
+                    "results\\ConstLR\\HitBall\\HitBall-999958.pt"
+                ]
+            },
+            {
+                "steps": 1000086,
+                "file_path": "results\\ConstLR\\HitBall\\HitBall-1000086.onnx",
+                "reward": null,
+                "creation_time": 1668741518.8990788,
+                "auxillary_file_paths": [
+                    "results\\ConstLR\\HitBall\\HitBall-1000086.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1000086,
+            "file_path": "results\\ConstLR\\HitBall.onnx",
+            "reward": null,
+            "creation_time": 1668741518.8990788,
+            "auxillary_file_paths": [
+                "results\\ConstLR\\HitBall\\HitBall-1000086.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.28.0",
+        "torch_version": "1.7.1+cpu"
+    }
+}

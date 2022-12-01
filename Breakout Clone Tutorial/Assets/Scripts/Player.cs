@@ -21,17 +21,17 @@ public class Player : MonoBehaviour
 
         //error checking: print("Mouse position's x coord: " + mouseLocationX);
 
-        if ( mouseLocationX > 32.6f)
+        if ( mouseLocationX > BreakoutConstants.LOCAL_POSITION_MAX)
         {
-            _rigidbody.MovePosition(new Vector3( 32.6f, -17, 0));
+            _rigidbody.MovePosition(new Vector3( BreakoutConstants.LOCAL_POSITION_MAX, BreakoutConstants.LOCAL_PLAYER_Y, 0));
         }
-        else if (mouseLocationX < -32.6f) //x used to be '-32.3f'
+        else if (mouseLocationX < BreakoutConstants.LOCAL_POSITION_MIN) //x used to be '-32.3f'
         {
-            _rigidbody.MovePosition(new Vector3( -32.6f, -17, 0)); //x used to be '-32.3f'
+            _rigidbody.MovePosition(new Vector3( BreakoutConstants.LOCAL_POSITION_MIN, BreakoutConstants.LOCAL_PLAYER_Y, 0)); //x used to be '-32.3f'
         }
         else
         {
-            _rigidbody.MovePosition(new Vector3(mouseLocationX, -17, 0));
+            _rigidbody.MovePosition(new Vector3(mouseLocationX, BreakoutConstants.LOCAL_PLAYER_Y, 0));
 
             //old code: _rigidbody.MovePosition(new Vector3(Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, 0, 50f)).x, -17, 0)); //must convert Screen to World Point 
         }

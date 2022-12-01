@@ -1,0 +1,47 @@
+{
+    "HitBall": {
+        "checkpoints": [
+            {
+                "steps": 499984,
+                "file_path": "results\\AlotaAlteredHyperParams\\HitBall\\HitBall-499984.onnx",
+                "reward": 10.0,
+                "creation_time": 1668458979.5268154,
+                "auxillary_file_paths": [
+                    "results\\AlotaAlteredHyperParams\\HitBall\\HitBall-499984.pt"
+                ]
+            },
+            {
+                "steps": 999970,
+                "file_path": "results\\AlotaAlteredHyperParams\\HitBall\\HitBall-999970.onnx",
+                "reward": null,
+                "creation_time": 1668459260.2154813,
+                "auxillary_file_paths": [
+                    "results\\AlotaAlteredHyperParams\\HitBall\\HitBall-999970.pt"
+                ]
+            },
+            {
+                "steps": 1000034,
+                "file_path": "results\\AlotaAlteredHyperParams\\HitBall\\HitBall-1000034.onnx",
+                "reward": null,
+                "creation_time": 1668459260.2434816,
+                "auxillary_file_paths": [
+                    "results\\AlotaAlteredHyperParams\\HitBall\\HitBall-1000034.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1000034,
+            "file_path": "results\\AlotaAlteredHyperParams\\HitBall.onnx",
+            "reward": null,
+            "creation_time": 1668459260.2434816,
+            "auxillary_file_paths": [
+                "results\\AlotaAlteredHyperParams\\HitBall\\HitBall-1000034.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.28.0",
+        "torch_version": "1.7.1+cpu"
+    }
+}

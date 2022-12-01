@@ -1,0 +1,65 @@
+{
+    "HitBall": {
+        "checkpoints": [
+            {
+                "steps": 8499966,
+                "file_path": "results\\IncrSummaryFreq\\HitBall\\HitBall-8499966.onnx",
+                "reward": 115.83333333333333,
+                "creation_time": 1668793419.3950167,
+                "auxillary_file_paths": [
+                    "results\\IncrSummaryFreq\\HitBall\\HitBall-8499966.pt"
+                ]
+            },
+            {
+                "steps": 8999966,
+                "file_path": "results\\IncrSummaryFreq\\HitBall\\HitBall-8999966.onnx",
+                "reward": 92.53846153846153,
+                "creation_time": 1668793642.6565762,
+                "auxillary_file_paths": [
+                    "results\\IncrSummaryFreq\\HitBall\\HitBall-8999966.pt"
+                ]
+            },
+            {
+                "steps": 9499941,
+                "file_path": "results\\IncrSummaryFreq\\HitBall\\HitBall-9499941.onnx",
+                "reward": 105.6,
+                "creation_time": 1668793851.4449522,
+                "auxillary_file_paths": [
+                    "results\\IncrSummaryFreq\\HitBall\\HitBall-9499941.pt"
+                ]
+            },
+            {
+                "steps": 9999983,
+                "file_path": "results\\IncrSummaryFreq\\HitBall\\HitBall-9999983.onnx",
+                "reward": null,
+                "creation_time": 1668794061.630916,
+                "auxillary_file_paths": [
+                    "results\\IncrSummaryFreq\\HitBall\\HitBall-9999983.pt"
+                ]
+            },
+            {
+                "steps": 10000175,
+                "file_path": "results\\IncrSummaryFreq\\HitBall\\HitBall-10000175.onnx",
+                "reward": null,
+                "creation_time": 1668794061.658911,
+                "auxillary_file_paths": [
+                    "results\\IncrSummaryFreq\\HitBall\\HitBall-10000175.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 10000175,
+            "file_path": "results\\IncrSummaryFreq\\HitBall.onnx",
+            "reward": null,
+            "creation_time": 1668794061.658911,
+            "auxillary_file_paths": [
+                "results\\IncrSummaryFreq\\HitBall\\HitBall-10000175.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.28.0",
+        "torch_version": "1.7.1+cpu"
+    }
+}

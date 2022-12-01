@@ -1,0 +1,47 @@
+{
+    "HitBall": {
+        "checkpoints": [
+            {
+                "steps": 499991,
+                "file_path": "results\\EndingHyperParamsAtStart\\HitBall\\HitBall-499991.onnx",
+                "reward": null,
+                "creation_time": 1668450271.1459212,
+                "auxillary_file_paths": [
+                    "results\\EndingHyperParamsAtStart\\HitBall\\HitBall-499991.pt"
+                ]
+            },
+            {
+                "steps": 999991,
+                "file_path": "results\\EndingHyperParamsAtStart\\HitBall\\HitBall-999991.onnx",
+                "reward": null,
+                "creation_time": 1668450979.0204039,
+                "auxillary_file_paths": [
+                    "results\\EndingHyperParamsAtStart\\HitBall\\HitBall-999991.pt"
+                ]
+            },
+            {
+                "steps": 1000055,
+                "file_path": "results\\EndingHyperParamsAtStart\\HitBall\\HitBall-1000055.onnx",
+                "reward": null,
+                "creation_time": 1668450979.0494027,
+                "auxillary_file_paths": [
+                    "results\\EndingHyperParamsAtStart\\HitBall\\HitBall-1000055.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1000055,
+            "file_path": "results\\EndingHyperParamsAtStart\\HitBall.onnx",
+            "reward": null,
+            "creation_time": 1668450979.0494027,
+            "auxillary_file_paths": [
+                "results\\EndingHyperParamsAtStart\\HitBall\\HitBall-1000055.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.28.0",
+        "torch_version": "1.7.1+cpu"
+    }
+}

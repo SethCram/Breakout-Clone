@@ -1,0 +1,65 @@
+{
+    "HitBall": {
+        "checkpoints": [
+            {
+                "steps": 8499961,
+                "file_path": "results\\AnotherLongRun4\\HitBall\\HitBall-8499961.onnx",
+                "reward": 117.4,
+                "creation_time": 1668830643.929062,
+                "auxillary_file_paths": [
+                    "results\\AnotherLongRun4\\HitBall\\HitBall-8499961.pt"
+                ]
+            },
+            {
+                "steps": 8999966,
+                "file_path": "results\\AnotherLongRun4\\HitBall\\HitBall-8999966.onnx",
+                "reward": 117.7,
+                "creation_time": 1668830849.0779362,
+                "auxillary_file_paths": [
+                    "results\\AnotherLongRun4\\HitBall\\HitBall-8999966.pt"
+                ]
+            },
+            {
+                "steps": 9499952,
+                "file_path": "results\\AnotherLongRun4\\HitBall\\HitBall-9499952.onnx",
+                "reward": 98.6923076923077,
+                "creation_time": 1668831052.8405263,
+                "auxillary_file_paths": [
+                    "results\\AnotherLongRun4\\HitBall\\HitBall-9499952.pt"
+                ]
+            },
+            {
+                "steps": 9999974,
+                "file_path": "results\\AnotherLongRun4\\HitBall\\HitBall-9999974.onnx",
+                "reward": 236.0,
+                "creation_time": 1668831260.098186,
+                "auxillary_file_paths": [
+                    "results\\AnotherLongRun4\\HitBall\\HitBall-9999974.pt"
+                ]
+            },
+            {
+                "steps": 10000038,
+                "file_path": "results\\AnotherLongRun4\\HitBall\\HitBall-10000038.onnx",
+                "reward": 236.0,
+                "creation_time": 1668831260.118184,
+                "auxillary_file_paths": [
+                    "results\\AnotherLongRun4\\HitBall\\HitBall-10000038.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 10000038,
+            "file_path": "results\\AnotherLongRun4\\HitBall.onnx",
+            "reward": 236.0,
+            "creation_time": 1668831260.118184,
+            "auxillary_file_paths": [
+                "results\\AnotherLongRun4\\HitBall\\HitBall-10000038.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.28.0",
+        "torch_version": "1.7.1+cpu"
+    }
+}

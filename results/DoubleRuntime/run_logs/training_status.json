@@ -1,0 +1,65 @@
+{
+    "HitBall": {
+        "checkpoints": [
+            {
+                "steps": 499983,
+                "file_path": "results\\DoubleRuntime\\HitBall\\HitBall-499983.onnx",
+                "reward": 64.33333333333333,
+                "creation_time": 1668788699.6165664,
+                "auxillary_file_paths": [
+                    "results\\DoubleRuntime\\HitBall\\HitBall-499983.pt"
+                ]
+            },
+            {
+                "steps": 999948,
+                "file_path": "results\\DoubleRuntime\\HitBall\\HitBall-999948.onnx",
+                "reward": 43.5,
+                "creation_time": 1668788922.1396263,
+                "auxillary_file_paths": [
+                    "results\\DoubleRuntime\\HitBall\\HitBall-999948.pt"
+                ]
+            },
+            {
+                "steps": 1499997,
+                "file_path": "results\\DoubleRuntime\\HitBall\\HitBall-1499997.onnx",
+                "reward": 84.8,
+                "creation_time": 1668789142.5658727,
+                "auxillary_file_paths": [
+                    "results\\DoubleRuntime\\HitBall\\HitBall-1499997.pt"
+                ]
+            },
+            {
+                "steps": 1999973,
+                "file_path": "results\\DoubleRuntime\\HitBall\\HitBall-1999973.onnx",
+                "reward": 80.0,
+                "creation_time": 1668789366.5896149,
+                "auxillary_file_paths": [
+                    "results\\DoubleRuntime\\HitBall\\HitBall-1999973.pt"
+                ]
+            },
+            {
+                "steps": 2000037,
+                "file_path": "results\\DoubleRuntime\\HitBall\\HitBall-2000037.onnx",
+                "reward": 80.0,
+                "creation_time": 1668789366.610611,
+                "auxillary_file_paths": [
+                    "results\\DoubleRuntime\\HitBall\\HitBall-2000037.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 2000037,
+            "file_path": "results\\DoubleRuntime\\HitBall.onnx",
+            "reward": 80.0,
+            "creation_time": 1668789366.610611,
+            "auxillary_file_paths": [
+                "results\\DoubleRuntime\\HitBall\\HitBall-2000037.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.28.0",
+        "torch_version": "1.7.1+cpu"
+    }
+}

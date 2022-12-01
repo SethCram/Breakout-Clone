@@ -1,0 +1,29 @@
+{
+    "HitBall": {
+        "checkpoints": [
+            {
+                "steps": 20880,
+                "file_path": "results\\OneReward\\HitBall\\HitBall-20880.onnx",
+                "reward": 0.0,
+                "creation_time": 1667687002.9807725,
+                "auxillary_file_paths": [
+                    "results\\OneReward\\HitBall\\HitBall-20880.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 20880,
+            "file_path": "results\\OneReward\\HitBall.onnx",
+            "reward": 0.0,
+            "creation_time": 1667687002.9807725,
+            "auxillary_file_paths": [
+                "results\\OneReward\\HitBall\\HitBall-20880.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.28.0",
+        "torch_version": "1.7.1+cpu"
+    }
+}
