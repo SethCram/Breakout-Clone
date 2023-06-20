@@ -1,7 +1,10 @@
 # Breakout-Clone
+A modern spinoff of the classic Breakout arcade game built in Unity3d.
+
 [See the presentation](https://docs.google.com/presentation/d/1HEdi159ltVG2eTYerhlTsmcbYpWvM3ygljTGu5KgJrk/edit?usp=sharing)
 
-[Play the game](https://sethcram.weebly.com/breakout-clone.html)
+## Play the game
+[![Brick Breaker Title](/images/brick_breaker.PNG)](https://sethcram.github.io/?game=2#games)
 
 ## Developer Notes
 - Built on Unity 2021.3.10f1
