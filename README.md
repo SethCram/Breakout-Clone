@@ -1,5 +1,5 @@
 # Breakout-Clone
-A modern spinoff of the classic Breakout arcade game built in Unity3d.
+A modern spinoff of the classic Breakout arcade game built in Unity3d. AI built with ml-agents plays the game during periods inactivity on the title screen. 
 
 [See the presentation](https://docs.google.com/presentation/d/1HEdi159ltVG2eTYerhlTsmcbYpWvM3ygljTGu5KgJrk/edit?usp=sharing)
 
