@@ -1,7 +1,7 @@
 # Breakout-Clone
 A modern spinoff of the classic Breakout arcade game built in Unity3d. AI built with ml-agents plays the game during periods inactivity on the title screen. 
 
-[See the presentation](https://docs.google.com/presentation/d/1HEdi159ltVG2eTYerhlTsmcbYpWvM3ygljTGu5KgJrk/edit?usp=sharing)
+[See the AI presentation](https://docs.google.com/presentation/d/1HEdi159ltVG2eTYerhlTsmcbYpWvM3ygljTGu5KgJrk/edit?usp=sharing)
 
 ## Play the game
 [![Brick Breaker Title](/images/brick_breaker.PNG)](https://sethcram.github.io/?game=2#games)
